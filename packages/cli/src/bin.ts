@@ -7,6 +7,7 @@ import { makeController } from './commands/make-controller.js';
 import { makeMiddleware } from './commands/make-middleware.js';
 import { makeModel } from './commands/make-model.js';
 import { makeMigration } from './commands/make-migration.js';
+import { makeAuth } from './commands/make-auth.js';
 import { migrate } from './commands/migrate.js';
 import { dbSeed } from './commands/db-seed.js';
 
@@ -38,6 +39,11 @@ cli
 cli
   .command('make:migration <name>', 'Generate a Drizzle migration (delegates to drizzle-kit)')
   .action((name: string) => makeMigration(name));
+
+cli
+  .command('make:auth', 'Scaffold better-auth schema + RequireAuth middleware')
+  .option('--force', 'Overwrite if exists')
+  .action((opts: { force?: boolean }) => makeAuth({ force: opts.force }));
 
 cli
   .command('migrate', 'Run pending database migrations')
