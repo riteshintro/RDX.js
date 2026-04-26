@@ -35,3 +35,9 @@ MAIL_FROM="__APP_NAME__ <noreply@example.com>"
 
 # Scheduler (cron tz; defaults to system local time if unset)
 # SCHEDULER_TIMEZONE=UTC
+
+# File uploads — multer (per-route via Upload.single/array/fields)
+UPLOAD_MAX_FILE_SIZE_MB=10
+UPLOAD_MAX_FILES=10
+# Optional: persist to disk instead of memory
+# UPLOAD_DEST=storage/uploads

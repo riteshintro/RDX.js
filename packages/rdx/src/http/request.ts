@@ -86,4 +86,29 @@ export class Request {
   authSession<T = unknown>(): T | null {
     return ((this.raw as unknown as { _session?: T })._session ?? null) as T | null;
   }
+
+  file(field?: string): Express.Multer.File | undefined {
+    const r = this.raw as unknown as {
+      file?: Express.Multer.File;
+      files?: Record<string, Express.Multer.File[]> | Express.Multer.File[];
+    };
+    if (r.file && (!field || r.file.fieldname === field)) return r.file;
+    if (!field) return undefined;
+    const files = r.files;
+    if (Array.isArray(files)) return files.find((f) => f.fieldname === field);
+    return files?.[field]?.[0];
+  }
+
+  files(field?: string): Express.Multer.File[] {
+    const r = this.raw as unknown as {
+      files?: Record<string, Express.Multer.File[]> | Express.Multer.File[];
+    };
+    const files = r.files;
+    if (!files) return [];
+    if (Array.isArray(files)) {
+      return field ? files.filter((f) => f.fieldname === field) : files;
+    }
+    if (field) return files[field] ?? [];
+    return Object.values(files).flat();
+  }
 }

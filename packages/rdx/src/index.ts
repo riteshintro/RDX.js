@@ -60,6 +60,18 @@ export { Mailer, type MailConfig } from './mail/mailer.js';
 export { Mail } from './mail/mail.js';
 export { MailServiceProvider } from './providers/mail-service-provider.js';
 
+export {
+  Upload,
+  uploadSingle,
+  uploadArray,
+  uploadFields,
+  uploadAny,
+  uploadNone,
+  type UploadOptions,
+  type UploadField,
+  type UploadedFile,
+} from './uploads/uploads.js';
+
 export type {
   HttpMethod,
   RouteDef,

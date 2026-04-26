@@ -11,6 +11,7 @@ export default defineConfig({
     'src/auth/index.ts',
     'src/scheduler/index.ts',
     'src/mail/index.ts',
+    'src/uploads/index.ts',
     'src/exceptions/index.ts',
     'src/support/index.ts',
   ],
