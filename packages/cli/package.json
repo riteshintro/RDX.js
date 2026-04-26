@@ -1,0 +1,34 @@
+{
+  "name": "@rdx/cli",
+  "version": "0.0.1",
+  "description": "rdx framework command-line interface",
+  "type": "module",
+  "bin": {
+    "rdx": "./dist/bin.js"
+  },
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "clean": "rm -rf dist .tsbuildinfo"
+  },
+  "dependencies": {
+    "cac": "^6.7.14",
+    "drizzle-orm": "^0.36.4",
+    "handlebars": "^4.7.8",
+    "picocolors": "^1.1.1",
+    "rdx": "workspace:*",
+    "reflect-metadata": "^0.2.2",
+    "tinyglobby": "^0.2.10",
+    "tsx": "^4.19.2"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.2.13",
+    "@types/node": "^22.9.0",
+    "tsup": "^8.3.5",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.5"
+  }
+}

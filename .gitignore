@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.claude/
+.turbo/
+.env
+.env.local
+*.log
+.DS_Store
+coverage/
+.vitest-cache/
+*.tsbuildinfo

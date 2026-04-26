@@ -1,0 +1,5 @@
+APP_ENV=local
+APP_PORT=3000
+LOG_LEVEL=debug
+
+DATABASE_URL=postgres://user:password@localhost:5432/__APP_NAME__
