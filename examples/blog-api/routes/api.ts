@@ -1,4 +1,4 @@
-import { Route } from 'rdx';
+import { Route, RequireAuth } from 'rdx';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 import { StorePostRequest } from '../app/Http/Requests/StorePostRequest.js';
 
@@ -9,6 +9,6 @@ Route.group({ prefix: '/api/v1' }, () => {
   Route.get('/posts', [PostController, 'index']).name('posts.index');
   Route.get('/posts/{id}', [PostController, 'show']).name('posts.show');
   Route.post('/posts', [PostController, 'store'])
-    .middleware(StorePostRequest)
+    .middleware(RequireAuth, StorePostRequest)
     .name('posts.store');
 });

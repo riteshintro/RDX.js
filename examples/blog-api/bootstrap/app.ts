@@ -16,6 +16,13 @@ export default async function createApp(): Promise<Application> {
       database: {
         url: process.env.DATABASE_URL,
       },
+      auth: {
+        enabled: true,
+        options: {
+          secret: process.env.BETTER_AUTH_SECRET ?? 'change-me-in-production-32chars-min',
+          baseURL: process.env.BETTER_AUTH_URL ?? `http://localhost:${process.env.APP_PORT ?? 3000}`,
+        },
+      },
       logging: {
         level: process.env.LOG_LEVEL ?? 'info',
       },

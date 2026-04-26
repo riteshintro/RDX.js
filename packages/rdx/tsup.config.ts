@@ -8,6 +8,7 @@ export default defineConfig({
     'src/routing/index.ts',
     'src/database/index.ts',
     'src/validation/index.ts',
+    'src/auth/index.ts',
     'src/exceptions/index.ts',
     'src/support/index.ts',
   ],

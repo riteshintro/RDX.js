@@ -31,6 +31,10 @@
       "types": "./dist/validation/index.d.ts",
       "import": "./dist/validation/index.js"
     },
+    "./auth": {
+      "types": "./dist/auth/index.d.ts",
+      "import": "./dist/auth/index.js"
+    },
     "./exceptions": {
       "types": "./dist/exceptions/index.d.ts",
       "import": "./dist/exceptions/index.js"
@@ -49,15 +53,17 @@
     "clean": "rm -rf dist .tsbuildinfo"
   },
   "dependencies": {
+    "@better-auth/drizzle-adapter": "^1.6.0",
+    "better-auth": "^1.6.0",
     "dotenv": "^16.4.5",
-    "drizzle-orm": "^0.36.4",
+    "drizzle-orm": "^0.45.2",
     "express": "^5.0.1",
     "pg": "^8.13.1",
     "pino": "^9.5.0",
     "pino-pretty": "^11.3.0",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
-    "zod": "^3.23.8"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@electric-sql/pglite": "^0.2.13",

@@ -37,6 +37,19 @@ export { DatabaseServiceProvider } from './providers/database-service-provider.j
 
 export { validate, zodErrorsToMap } from './validation/zod-validator.js';
 export { FormRequest } from './validation/form-request.js';
+
+export { createAuth, type RdxAuthOptions, type RdxAuthInstance, type CreateAuthArgs } from './auth/auth-config.js';
+export { Auth } from './auth/auth-facade.js';
+export { RequireAuth } from './auth/require-auth.js';
+export {
+  user as userTable,
+  session as sessionTable,
+  account as accountTable,
+  verification as verificationTable,
+  authSchema,
+  AUTH_SCHEMA_SQL,
+} from './auth/schema.js';
+export { AuthServiceProvider } from './providers/auth-service-provider.js';
 export type {
   HttpMethod,
   RouteDef,

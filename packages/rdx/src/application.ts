@@ -8,9 +8,11 @@ import type { ServiceProvider } from './providers/service-provider.js';
 import { HttpServiceProvider } from './providers/http-service-provider.js';
 import { RoutingServiceProvider } from './providers/routing-service-provider.js';
 import { DatabaseServiceProvider } from './providers/database-service-provider.js';
+import { AuthServiceProvider } from './providers/auth-service-provider.js';
 import { HttpKernel } from './http/kernel.js';
 import { Router } from './routing/router.js';
 import { RouteCompiler } from './routing/compiler.js';
+import type { RdxAuthInstance } from './auth/auth-config.js';
 
 export type ProviderClass = new (app: Application) => ServiceProvider;
 
@@ -23,7 +25,7 @@ export class Application {
   private readonly providers: ServiceProvider[] = [];
   private booted = false;
   private initialConfig: ConfigData = {};
-  private builtIns: ProviderClass[] = [HttpServiceProvider, RoutingServiceProvider, DatabaseServiceProvider];
+  private builtIns: ProviderClass[] = [HttpServiceProvider, RoutingServiceProvider, DatabaseServiceProvider, AuthServiceProvider];
   private routesLoader: (() => unknown | Promise<unknown>) | null = null;
   private shutdownHooks: Array<() => unknown | Promise<unknown>> = [];
 
@@ -89,6 +91,10 @@ export class Application {
       await p.boot();
     }
 
+    if (this.container.has('httpKernel')) {
+      this.httpKernel().setupBodyParsing();
+    }
+
     if (this.routesLoader) {
       await this.routesLoader();
     }
@@ -120,6 +126,10 @@ export class Application {
 
   db<T = unknown>(): T {
     return this.container.resolve<T>('db');
+  }
+
+  auth(): RdxAuthInstance {
+    return this.container.resolve<RdxAuthInstance>('auth');
   }
 
   onShutdown(fn: () => unknown | Promise<unknown>): this {

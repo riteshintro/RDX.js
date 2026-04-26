@@ -15,6 +15,7 @@ export interface HttpKernelOptions {
 export class HttpKernel {
   readonly express: Express;
   private finalized = false;
+  private bodyParsing = false;
   private server: Server | null = null;
 
   constructor(
@@ -26,8 +27,14 @@ export class HttpKernel {
     if (options.trustProxy !== undefined) {
       this.express.set('trust proxy', options.trustProxy);
     }
-    this.express.use(express.json({ limit: options.jsonLimit ?? '1mb' }));
+  }
+
+  setupBodyParsing(): this {
+    if (this.bodyParsing) return this;
+    this.bodyParsing = true;
+    this.express.use(express.json({ limit: this.options.jsonLimit ?? '1mb' }));
     this.express.use(express.urlencoded({ extended: true }));
+    return this;
   }
 
   use(mw: MiddlewareLike): this {
@@ -48,6 +55,7 @@ export class HttpKernel {
 
   finalize(): this {
     if (this.finalized) return this;
+    if (!this.bodyParsing) this.setupBodyParsing();
     this.express.use((req, _res, next) => {
       next(new NotFoundException(`Cannot ${req.method} ${req.path}`));
     });

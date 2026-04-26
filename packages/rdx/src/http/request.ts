@@ -78,4 +78,12 @@ export class Request {
     const b = (this.raw as unknown as { _bindings?: Record<string, unknown> })._bindings;
     return (b?.[name]) as T;
   }
+
+  user<T = unknown>(): T | null {
+    return ((this.raw as unknown as { _user?: T })._user ?? null) as T | null;
+  }
+
+  authSession<T = unknown>(): T | null {
+    return ((this.raw as unknown as { _session?: T })._session ?? null) as T | null;
+  }
 }
