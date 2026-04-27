@@ -52,6 +52,12 @@ export {
   AUTH_SCHEMA_SQL,
 } from './auth/schema.js';
 export { AuthServiceProvider } from './providers/auth-service-provider.js';
+export {
+  VerifyEmailMail,
+  ResetPasswordMail,
+  type VerifyEmailPayload,
+  type ResetPasswordPayload,
+} from './auth/mailables.js';
 
 export { Scheduler, type ScheduledFn, type ScheduledTask, type ScheduledTaskOptions } from './scheduler/scheduler.js';
 export { Schedule } from './scheduler/schedule.js';

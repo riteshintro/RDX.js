@@ -21,6 +21,9 @@ DATABASE_URL=postgres://user:password@localhost:5432/__APP_NAME__
 # Auth — better-auth (enable via config.auth.enabled in bootstrap/app.ts)
 BETTER_AUTH_SECRET=replace-with-32-or-more-random-characters
 BETTER_AUTH_URL=http://localhost:3000
+# Auth-side email behaviors (delivered via Mail when mailer is bound)
+AUTH_REQUIRE_EMAIL_VERIFICATION=false
+AUTH_SEND_VERIFICATION_ON_SIGNUP=false
 
 # Mail — nodemailer + handlebars
 # Transport: smtp | json | stream | sendmail (json/stream are dev-only)

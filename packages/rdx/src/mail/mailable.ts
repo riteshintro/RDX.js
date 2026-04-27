@@ -16,8 +16,10 @@ export interface RenderedMessage {
 
 export abstract class Mailable<T = Record<string, unknown>> {
   abstract subject(payload: T): string | Promise<string>;
-  abstract template(): string;
   abstract data(payload: T): Record<string, unknown> | Promise<Record<string, unknown>>;
+
+  template?(): string;
+  source?(): string;
 
   from?(): string | undefined;
   cc?(): string | string[] | undefined;

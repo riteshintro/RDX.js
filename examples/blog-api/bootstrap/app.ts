@@ -18,6 +18,10 @@ export default async function createApp(): Promise<Application> {
       },
       auth: {
         enabled: true,
+        email: {
+          requireVerification: process.env.AUTH_REQUIRE_EMAIL_VERIFICATION === 'true',
+          sendOnSignUp: process.env.AUTH_SEND_VERIFICATION_ON_SIGNUP === 'true',
+        },
         options: {
           secret: process.env.BETTER_AUTH_SECRET ?? 'change-me-in-production-32chars-min',
           baseURL: process.env.BETTER_AUTH_URL ?? `http://localhost:${process.env.APP_PORT ?? 3000}`,

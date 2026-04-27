@@ -24,6 +24,10 @@ export default async function createApp(): Promise<Application> {
       },
       auth: {
         enabled: false, // flip to true after `pnpm rdx make:auth` + migrate
+        email: {
+          requireVerification: process.env.AUTH_REQUIRE_EMAIL_VERIFICATION === 'true',
+          sendOnSignUp: process.env.AUTH_SEND_VERIFICATION_ON_SIGNUP === 'true',
+        },
         options: {
           secret: process.env.BETTER_AUTH_SECRET,
           baseURL: process.env.BETTER_AUTH_URL,

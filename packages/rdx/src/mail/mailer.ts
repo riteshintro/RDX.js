@@ -40,7 +40,7 @@ export class Mailer {
     const inst = new MailableClass();
     const data = await inst.data(payload);
     const subject = await inst.subject(payload);
-    const html = await this.renderTemplate(inst.template(), data);
+    const html = await this.renderMailable(inst, data);
     const message: RenderedMessage = {
       to,
       subject,
@@ -69,11 +69,29 @@ export class Mailer {
     const inst = new MailableClass();
     const data = await inst.data(payload);
     const subject = await inst.subject(payload);
-    const html = await this.renderTemplate(inst.template(), data);
+    const html = await this.renderMailable(inst, data);
     return { subject, html };
   }
 
-  private async renderTemplate(name: string, data: Record<string, unknown>): Promise<string> {
+  private async renderMailable(inst: Mailable<unknown>, data: Record<string, unknown>): Promise<string> {
+    const inlineSource = inst.source?.();
+    if (inlineSource !== undefined) {
+      const cacheKey = `__inline:${inst.constructor.name}`;
+      let tpl = templateCache.get(cacheKey);
+      if (!tpl) {
+        tpl = Handlebars.compile(inlineSource, { noEscape: false });
+        templateCache.set(cacheKey, tpl);
+      }
+      return tpl(data);
+    }
+    const name = inst.template?.();
+    if (!name) {
+      throw new Error(`Mailable ${inst.constructor.name} must implement template() or source()`);
+    }
+    return this.renderFileTemplate(name, data);
+  }
+
+  private async renderFileTemplate(name: string, data: Record<string, unknown>): Promise<string> {
     const file = name.endsWith('.hbs') ? name : `${name}.hbs`;
     const path = join(this.templatesPath, file);
     if (!existsSync(path)) {

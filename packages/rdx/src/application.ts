@@ -34,9 +34,9 @@ export class Application {
     HttpServiceProvider,
     RoutingServiceProvider,
     DatabaseServiceProvider,
-    AuthServiceProvider,
     SchedulerServiceProvider,
     MailServiceProvider,
+    AuthServiceProvider,
   ];
   private routesLoader: (() => unknown | Promise<unknown>) | null = null;
   private scheduleLoader: (() => unknown | Promise<unknown>) | null = null;

@@ -9,3 +9,9 @@ export {
   authSchema,
   AUTH_SCHEMA_SQL,
 } from './schema.js';
+export {
+  VerifyEmailMail,
+  ResetPasswordMail,
+  type VerifyEmailPayload,
+  type ResetPasswordPayload,
+} from './mailables.js';
