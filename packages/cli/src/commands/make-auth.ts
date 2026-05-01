@@ -10,12 +10,12 @@ export {
   sessionTable as session,
   accountTable as account,
   verificationTable as verification,
-} from '@avoxjs/core/auth';
+} from 'fyron/auth';
 `;
 
 const MIDDLEWARE_FILE = `// Re-export RequireAuth so it's discoverable in your app's middleware folder.
 // Use it in routes: Route.post('/posts', [...]).middleware(RequireAuth)
-export { RequireAuth } from '@avoxjs/core';
+export { RequireAuth } from 'fyron';
 `;
 
 export interface MakeAuthOpts {
@@ -52,9 +52,9 @@ export async function makeAuth(opts: MakeAuthOpts = {}): Promise<void> {
 
   2. Set BETTER_AUTH_SECRET (32+ chars) in .env
 
-  3. Generate migration:  pnpm avox make:migration init_auth
+  3. Generate migration:  pnpm fyron make:migration init_auth
 
-  4. Apply migration:     pnpm avox migrate
+  4. Apply migration:     pnpm fyron migrate
 
   5. Sign-up endpoint:    POST /api/auth/sign-up/email
      body: { name, email, password }

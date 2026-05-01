@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Application } from '@avoxjs/core';
+import { Application } from 'fyron';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 

@@ -7,7 +7,7 @@ import { makeAuth } from '../commands/make-auth.js';
 let dir: string;
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'avox-make-auth-'));
+  dir = await mkdtemp(join(tmpdir(), 'fyron-make-auth-'));
   vi.spyOn(console, 'log').mockImplementation(() => {});
 });
 
@@ -21,14 +21,14 @@ describe('makeAuth', () => {
     await makeAuth({ cwd: dir });
 
     const schema = await readFile(join(dir, 'database/schema/auth.ts'), 'utf8');
-    expect(schema).toContain("from '@avoxjs/core/auth'");
+    expect(schema).toContain("from 'fyron/auth'");
     expect(schema).toMatch(/userTable as user/);
     expect(schema).toMatch(/sessionTable as session/);
     expect(schema).toMatch(/accountTable as account/);
     expect(schema).toMatch(/verificationTable as verification/);
 
     const mw = await readFile(join(dir, 'app/Http/Middleware/RequireAuth.ts'), 'utf8');
-    expect(mw).toContain("export { RequireAuth } from '@avoxjs/core'");
+    expect(mw).toContain("export { RequireAuth } from 'fyron'");
   });
 
   it('rejects when files already exist unless --force', async () => {

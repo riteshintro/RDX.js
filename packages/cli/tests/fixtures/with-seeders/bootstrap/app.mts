@@ -1,8 +1,8 @@
-import { Application } from '@avoxjs/core';
+import { Application } from 'fyron';
 import { PGlite } from '@electric-sql/pglite';
 import { drizzle } from 'drizzle-orm/pglite';
 
-const KEY = '__avox_test_pglite';
+const KEY = '__fyron_test_pglite';
 const g = globalThis as Record<string, unknown>;
 
 export default async function () {

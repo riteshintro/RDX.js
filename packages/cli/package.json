@@ -1,7 +1,7 @@
 {
-  "name": "@avoxjs/cli",
-  "version": "0.0.12",
-  "description": "avox framework command-line interface",
+  "name": "@fyron/cli",
+  "version": "0.1.0",
+  "description": "fyron framework command-line interface",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
   "keywords": [
-    "avox",
+    "fyron",
     "cli",
     "fastify",
     "laravel",
@@ -24,7 +24,7 @@
   },
   "type": "module",
   "bin": {
-    "@avoxjs/core": "./dist/bin.js"
+    "fyron": "./dist/bin.js"
   },
   "files": [
     "dist"
@@ -41,7 +41,7 @@
     "drizzle-orm": "^0.45.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1",
-    "@avoxjs/core": "workspace:*",
+    "fyron": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.2"

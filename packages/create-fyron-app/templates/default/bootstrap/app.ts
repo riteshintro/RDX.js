@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Application } from '@avoxjs/core';
+import { Application } from 'fyron';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 
@@ -23,7 +23,7 @@ export default async function createApp(): Promise<Application> {
         level: process.env.LOG_LEVEL ?? 'info',
       },
       auth: {
-        enabled: false, // flip to true after `pnpm avox make:auth` + migrate
+        enabled: false, // flip to true after `pnpm fyron make:auth` + migrate
         email: {
           requireVerification: process.env.AUTH_REQUIRE_EMAIL_VERIFICATION === 'true',
           sendOnSignUp: process.env.AUTH_SEND_VERIFICATION_ON_SIGNUP === 'true',

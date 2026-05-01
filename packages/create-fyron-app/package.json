@@ -1,19 +1,19 @@
 {
-  "name": "create-avox-app",
-  "version": "0.0.12",
-  "description": "Scaffold a new avox framework application",
+  "name": "create-fyron-app",
+  "version": "0.1.0",
+  "description": "Scaffold a new fyron framework application",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riteshintro/RDX.js.git",
-    "directory": "packages/create-avox-app"
+    "directory": "packages/create-fyron-app"
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
   "keywords": [
-    "avox",
-    "create-avox-app",
+    "fyron",
+    "create-fyron-app",
     "scaffold",
     "starter",
     "fastify",
@@ -24,7 +24,7 @@
   },
   "type": "module",
   "bin": {
-    "create-avox-app": "./dist/index.js"
+    "create-fyron-app": "./dist/index.js"
   },
   "files": [
     "dist",

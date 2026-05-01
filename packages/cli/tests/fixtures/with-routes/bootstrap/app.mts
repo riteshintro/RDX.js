@@ -1,4 +1,4 @@
-import { Application, Route } from '@avoxjs/core';
+import { Application, Route } from 'fyron';
 
 export default async function () {
   return new Application(process.cwd())

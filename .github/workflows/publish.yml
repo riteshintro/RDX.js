@@ -50,24 +50,24 @@ jobs:
       - name: Test
         run: pnpm -r test
 
-      - name: Publish @avoxjs/core
+      - name: Publish fyron
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
         working-directory: packages/core
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @avoxjs/cli
+      - name: Publish @fyron/cli
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
         working-directory: packages/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish create-avox-app
+      - name: Publish create-fyron-app
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
-        working-directory: packages/create-avox-app
+        working-directory: packages/create-fyron-app
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -75,7 +75,7 @@ jobs:
         if: ${{ inputs.dry_run }}
         run: |
           echo "Dry run — would have published:"
-          for pkg in packages/core packages/cli packages/create-avox-app; do
+          for pkg in packages/core packages/cli packages/create-fyron-app; do
             name=$(node -p "require('./$pkg/package.json').name")
             ver=$(node -p "require('./$pkg/package.json').version")
             echo "  $name@$ver"

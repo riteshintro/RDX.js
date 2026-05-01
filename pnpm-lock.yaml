@@ -26,15 +26,15 @@ importers:
 
   examples/blog-api:
     dependencies:
-      '@avoxjs/cli':
+      '@fyron/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      '@avoxjs/core':
-        specifier: workspace:*
-        version: link:../../packages/core
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)
+      fyron:
+        specifier: workspace:*
+        version: link:../../packages/core
       pg:
         specifier: ^8.13.1
         version: 8.20.0
@@ -66,15 +66,15 @@ importers:
 
   packages/cli:
     dependencies:
-      '@avoxjs/core':
-        specifier: workspace:*
-        version: link:../core
       cac:
         specifier: ^6.7.14
         version: 6.7.14
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)
+      fyron:
+        specifier: workspace:*
+        version: link:../core
       handlebars:
         specifier: ^4.7.8
         version: 4.7.9
@@ -189,7 +189,7 @@ importers:
         specifier: ^2.1.5
         version: 2.1.9(@types/node@22.19.17)
 
-  packages/create-avox-app:
+  packages/create-fyron-app:
     dependencies:
       cac:
         specifier: ^6.7.14

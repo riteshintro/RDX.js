@@ -1,12 +1,12 @@
 # Releasing
 
-avox publishes three packages from this monorepo:
+fyron publishes three packages from this monorepo:
 
 | Package          | npm                                                   |
 |------------------|-------------------------------------------------------|
-| `@avoxjs/core`            | https://www.npmjs.com/package/@avoxjs/core                     |
-| `@avoxjs/cli`       | https://www.npmjs.com/package/@avoxjs/cli                |
-| `create-avox-app` | https://www.npmjs.com/package/create-avox-app          |
+| `fyron`            | https://www.npmjs.com/package/fyron                     |
+| `@fyron/cli`       | https://www.npmjs.com/package/@fyron/cli                |
+| `create-fyron-app` | https://www.npmjs.com/package/create-fyron-app          |
 
 ## One-time setup
 
@@ -21,14 +21,14 @@ The publish workflow is **tag-driven**.
 ```bash
 # 1. bump versions in lockstep (all 3 packages must match for compatibility)
 NEW=0.0.2
-node -e "for (const f of ['packages/core', 'packages/cli', 'packages/create-avox-app']) {
+node -e "for (const f of ['packages/core', 'packages/cli', 'packages/create-fyron-app']) {
   const pkg = require('path').join(process.cwd(), f, 'package.json');
   const j = require(pkg);
   j.version = '$NEW';
   require('fs').writeFileSync(pkg, JSON.stringify(j, null, 2) + '\n');
 }"
 
-# 2. update create-avox-app default avorVersion / cliVersion if you want
+# 2. update create-fyron-app default fyronVersion / cliVersion if you want
 #    new scaffolds to default to the new version (optional)
 
 # 3. commit + tag + push
@@ -46,7 +46,7 @@ GitHub → Actions → **publish** → **Run workflow**. Tick **dry run** to see
 
 ## Workspace deps & versioning
 
-`@avoxjs/cli` depends on `@avoxjs/core` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `@avoxjs/core` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
+`@fyron/cli` depends on `fyron` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `fyron` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
 
 ## Re-publishing the same version
 

@@ -1,4 +1,4 @@
-import { Application } from '@avoxjs/core';
+import { Application } from 'fyron';
 
 export default async function () {
   return new Application(process.cwd()).withConfig({

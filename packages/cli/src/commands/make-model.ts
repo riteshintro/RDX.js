@@ -6,7 +6,7 @@ import pc from 'picocolors';
 import { pascalCase, snakeCase, pluralize } from '../util/case.js';
 import type { MakeOpts } from './make-controller.js';
 
-const TEMPLATE = `import { Model } from '@avoxjs/core/database';
+const TEMPLATE = `import { Model } from 'fyron/database';
 import { {{tableConst}} } from '../../database/schema/{{tableFile}}.js';
 
 export class {{className}} extends Model<typeof {{tableConst}}> {

@@ -1,6 +1,6 @@
 {
-  "name": "@avoxjs/core",
-  "version": "0.0.12",
+  "name": "fyron",
+  "version": "0.1.0",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
   "license": "MIT",
   "author": "riteshintro",
@@ -17,7 +17,7 @@
     "fastify",
     "drizzle",
     "typescript",
-    "avox",
+    "fyron",
     "nodejs",
     "api"
   ],

@@ -14,7 +14,7 @@ import { dbSeed } from './commands/db-seed.js';
 import { scheduleRun } from './commands/schedule-run.js';
 import { scheduleList } from './commands/schedule-list.js';
 
-const cli = cac('avox');
+const cli = cac('fyron');
 
 cli
   .command('serve', 'Start the HTTP server')

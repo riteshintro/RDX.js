@@ -1,4 +1,4 @@
-import { Route, RequireAuth } from '@avoxjs/core';
+import { Route, RequireAuth } from 'fyron';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 import { StorePostRequest } from '../app/Http/Requests/StorePostRequest.js';
 
