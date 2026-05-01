@@ -1,4 +1,4 @@
-import { Application } from 'avorjs';
+import { Application } from 'avox';
 
 export default async function () {
   return new Application(process.cwd()).withConfig({

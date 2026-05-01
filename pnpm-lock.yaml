@@ -26,12 +26,12 @@ importers:
 
   examples/blog-api:
     dependencies:
-      avorjs:
-        specifier: workspace:*
-        version: link:../../packages/avor
-      avorjs-cli:
+      '@avoxjs/cli':
         specifier: workspace:*
         version: link:../../packages/cli
+      avox:
+        specifier: workspace:*
+        version: link:../../packages/avox
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)
@@ -64,7 +64,7 @@ importers:
         specifier: ^5.6.3
         version: 5.9.3
 
-  packages/avor:
+  packages/avox:
     dependencies:
       '@better-auth/drizzle-adapter':
         specifier: ^1.6.0
@@ -148,9 +148,9 @@ importers:
 
   packages/cli:
     dependencies:
-      avorjs:
+      avox:
         specifier: workspace:*
-        version: link:../avor
+        version: link:../avox
       cac:
         specifier: ^6.7.14
         version: 6.7.14
@@ -189,7 +189,7 @@ importers:
         specifier: ^2.1.5
         version: 2.1.9(@types/node@22.19.17)
 
-  packages/create-avor-app:
+  packages/create-avox-app:
     dependencies:
       cac:
         specifier: ^6.7.14

@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "avor": "tsx ../../packages/cli/dist/bin.js",
+    "avox": "tsx ../../packages/cli/dist/bin.js",
     "dev": "tsx ../../packages/cli/dist/bin.js serve",
     "routes": "tsx ../../packages/cli/dist/bin.js route:list",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "avorjs-cli": "workspace:*",
+    "@avoxjs/cli": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
-    "avorjs": "workspace:*",
+    "avox": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^4.0.0"

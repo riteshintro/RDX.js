@@ -1,4 +1,4 @@
-import { Application, Route } from 'avorjs';
+import { Application, Route } from 'avox';
 
 export default async function () {
   return new Application(process.cwd())

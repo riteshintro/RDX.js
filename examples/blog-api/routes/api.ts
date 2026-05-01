@@ -1,4 +1,4 @@
-import { Route, RequireAuth } from 'avorjs';
+import { Route, RequireAuth } from 'avox';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 import { StorePostRequest } from '../app/Http/Requests/StorePostRequest.js';
 
