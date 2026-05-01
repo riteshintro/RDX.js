@@ -10,12 +10,12 @@ export {
   sessionTable as session,
   accountTable as account,
   verificationTable as verification,
-} from 'fastjs/auth';
+} from '@avoxjs/core/auth';
 `;
 
 const MIDDLEWARE_FILE = `// Re-export RequireAuth so it's discoverable in your app's middleware folder.
 // Use it in routes: Route.post('/posts', [...]).middleware(RequireAuth)
-export { RequireAuth } from 'fastjs';
+export { RequireAuth } from '@avoxjs/core';
 `;
 
 export interface MakeAuthOpts {
@@ -52,9 +52,9 @@ export async function makeAuth(opts: MakeAuthOpts = {}): Promise<void> {
 
   2. Set BETTER_AUTH_SECRET (32+ chars) in .env
 
-  3. Generate migration:  pnpm fastjs make:migration init_auth
+  3. Generate migration:  pnpm avox make:migration init_auth
 
-  4. Apply migration:     pnpm fastjs migrate
+  4. Apply migration:     pnpm avox migrate
 
   5. Sign-up endpoint:    POST /api/auth/sign-up/email
      body: { name, email, password }

@@ -1,19 +1,19 @@
 {
-  "name": "create-fastjs-app",
-  "version": "0.0.11",
-  "description": "Scaffold a new fastjs framework application",
+  "name": "create-avox-app",
+  "version": "0.0.12",
+  "description": "Scaffold a new avox framework application",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riteshintro/RDX.js.git",
-    "directory": "packages/create-fastjs-app"
+    "directory": "packages/create-avox-app"
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
   "keywords": [
-    "fastjs",
-    "create-fastjs-app",
+    "avox",
+    "create-avox-app",
     "scaffold",
     "starter",
     "fastify",
@@ -24,7 +24,7 @@
   },
   "type": "module",
   "bin": {
-    "create-fastjs-app": "./dist/index.js"
+    "create-avox-app": "./dist/index.js"
   },
   "files": [
     "dist",

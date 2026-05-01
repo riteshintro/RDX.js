@@ -1,4 +1,4 @@
-import { Route, RequireAuth } from 'fastjs';
+import { Route, RequireAuth } from '@avoxjs/core';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 import { StorePostRequest } from '../app/Http/Requests/StorePostRequest.js';
 

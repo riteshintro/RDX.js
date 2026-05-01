@@ -1,13 +1,13 @@
 {
-  "name": "fastjs",
-  "version": "0.0.11",
+  "name": "@avoxjs/core",
+  "version": "0.0.12",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riteshintro/RDX.js.git",
-    "directory": "packages/fastjs"
+    "directory": "packages/core"
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
@@ -17,7 +17,7 @@
     "fastify",
     "drizzle",
     "typescript",
-    "fastjs",
+    "avox",
     "nodejs",
     "api"
   ],
