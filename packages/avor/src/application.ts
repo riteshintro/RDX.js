@@ -141,7 +141,7 @@ export class Application {
         providers: this.providers.length,
         routes: this.container.has('router') ? this.container.resolve<Router>('router').routes.length : 0,
       },
-      'rdx booted',
+      'avor booted',
     );
   }
 

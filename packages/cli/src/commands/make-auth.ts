@@ -10,12 +10,12 @@ export {
   sessionTable as session,
   accountTable as account,
   verificationTable as verification,
-} from 'rdx/auth';
+} from 'avor/auth';
 `;
 
 const MIDDLEWARE_FILE = `// Re-export RequireAuth so it's discoverable in your app's middleware folder.
 // Use it in routes: Route.post('/posts', [...]).middleware(RequireAuth)
-export { RequireAuth } from 'rdx';
+export { RequireAuth } from 'avor';
 `;
 
 export interface MakeAuthOpts {
@@ -52,9 +52,9 @@ export async function makeAuth(opts: MakeAuthOpts = {}): Promise<void> {
 
   2. Set BETTER_AUTH_SECRET (32+ chars) in .env
 
-  3. Generate migration:  pnpm rdx make:migration init_auth
+  3. Generate migration:  pnpm avor make:migration init_auth
 
-  4. Apply migration:     pnpm rdx migrate
+  4. Apply migration:     pnpm avor migrate
 
   5. Sign-up endpoint:    POST /api/auth/sign-up/email
      body: { name, email, password }

@@ -1,4 +1,4 @@
-import { Application, Route } from 'rdx';
+import { Application, Route } from 'avor';
 
 export default async function () {
   return new Application(process.cwd())

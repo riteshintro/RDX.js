@@ -1,7 +1,7 @@
 {
-  "name": "@rdx/cli",
-  "version": "0.0.1",
-  "description": "rdx framework command-line interface",
+  "name": "@avor/cli",
+  "version": "0.0.2",
+  "description": "avor framework command-line interface",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
@@ -11,11 +11,11 @@
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
-  "keywords": ["rdx", "cli", "fastify", "laravel", "scaffolding", "drizzle"],
+  "keywords": ["avor", "cli", "fastify", "laravel", "scaffolding", "drizzle"],
   "engines": { "node": ">=20" },
   "type": "module",
   "bin": {
-    "rdx": "./dist/bin.js"
+    "avor": "./dist/bin.js"
   },
   "files": ["dist"],
   "scripts": {
@@ -30,7 +30,7 @@
     "drizzle-orm": "^0.45.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1",
-    "rdx": "workspace:*",
+    "avor": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.2"

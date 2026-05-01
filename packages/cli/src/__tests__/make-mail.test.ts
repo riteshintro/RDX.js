@@ -7,7 +7,7 @@ import { makeMail } from '../commands/make-mail.js';
 let dir: string;
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'rdx-makemail-'));
+  dir = await mkdtemp(join(tmpdir(), 'avor-makemail-'));
   vi.spyOn(console, 'log').mockImplementation(() => {});
 });
 
@@ -24,7 +24,7 @@ describe('makeMail', () => {
 
     const cls = await readFile(classPath, 'utf8');
     expect(cls).toContain('export class WelcomeMail extends Mailable');
-    expect(cls).toContain("from 'rdx/mail'");
+    expect(cls).toContain("from 'avor/mail'");
     expect(cls).toContain("return 'welcome';");
 
     const tpl = await readFile(templatePath, 'utf8');

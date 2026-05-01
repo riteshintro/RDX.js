@@ -1,4 +1,4 @@
-import { Model } from 'rdx/database';
+import { Model } from 'avor/database';
 import { postsTable } from '../../database/schema/posts.js';
 
 export class Post extends Model {

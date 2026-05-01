@@ -7,7 +7,7 @@ import { scaffold } from '../scaffold.js';
 let dir: string;
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'rdx-scaffold-'));
+  dir = await mkdtemp(join(tmpdir(), 'avor-scaffold-'));
 });
 
 afterEach(async () => {

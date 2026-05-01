@@ -1,12 +1,12 @@
-# rdx
+# avor
 
 A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** + **TypeScript ESM**.
 
 [![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
-[![npm rdx](https://img.shields.io/npm/v/rdx?label=rdx)](https://www.npmjs.com/package/rdx)
-[![npm @rdx/cli](https://img.shields.io/npm/v/@rdx/cli?label=%40rdx%2Fcli)](https://www.npmjs.com/package/@rdx/cli)
-[![npm create-rdx-app](https://img.shields.io/npm/v/create-rdx-app?label=create-rdx-app)](https://www.npmjs.com/package/create-rdx-app)
-[![license](https://img.shields.io/npm/l/rdx)](LICENSE)
+[![npm avor](https://img.shields.io/npm/v/avor?label=avor)](https://www.npmjs.com/package/avor)
+[![npm @avor/cli](https://img.shields.io/npm/v/@avor/cli?label=%40avor%2Fcli)](https://www.npmjs.com/package/@avor/cli)
+[![npm create-avor-app](https://img.shields.io/npm/v/create-avor-app?label=create-avor-app)](https://www.npmjs.com/package/create-avor-app)
+[![license](https://img.shields.io/npm/l/avor)](LICENSE)
 
 It gives Laravel's developer ergonomics (service container, providers, route facade, Active Record on top of an ORM, artisan-style CLI, scheduler, mail) without leaving the Node ecosystem. Targets JSON APIs.
 
@@ -17,40 +17,40 @@ It gives Laravel's developer ergonomics (service container, providers, route fac
 ## Quick start
 
 ```bash
-npm create rdx-app@latest my-api
+npm create avor-app@latest my-api
 cd my-api
 pnpm install
 cp .env.example .env       # set DATABASE_URL + BETTER_AUTH_SECRET
-pnpm rdx serve             # → http://127.0.0.1:8000
+pnpm avor serve             # → http://127.0.0.1:8000
 ```
 
 ## Install in an existing project
 
 ```bash
-pnpm add rdx
-pnpm add -D @rdx/cli tsx drizzle-kit
+pnpm add avor
+pnpm add -D @avor/cli tsx drizzle-kit
 ```
 
 Generators:
 
 ```bash
-pnpm rdx make:controller User
-pnpm rdx make:model       User
-pnpm rdx make:middleware  RequireAuth
-pnpm rdx make:migration   create_users_table
-pnpm rdx make:auth                  # scaffolds better-auth schema + RequireAuth re-export
-pnpm rdx make:mail        Welcome
+pnpm avor make:controller User
+pnpm avor make:model       User
+pnpm avor make:middleware  RequireAuth
+pnpm avor make:migration   create_users_table
+pnpm avor make:auth                  # scaffolds better-auth schema + RequireAuth re-export
+pnpm avor make:mail        Welcome
 ```
 
 Operational commands:
 
 ```bash
-pnpm rdx serve              # start the Fastify server
-pnpm rdx route:list         # print the route table
-pnpm rdx migrate            # apply pending Drizzle migrations
-pnpm rdx db:seed            # run database/seeders/*
-pnpm rdx schedule:list      # list registered scheduled tasks
-pnpm rdx schedule:run       # start the cron scheduler (Ctrl+C to stop)
+pnpm avor serve              # start the Fastify server
+pnpm avor route:list         # print the route table
+pnpm avor migrate            # apply pending Drizzle migrations
+pnpm avor db:seed            # run database/seeders/*
+pnpm avor schedule:list      # list registered scheduled tasks
+pnpm avor schedule:run       # start the cron scheduler (Ctrl+C to stop)
 ```
 
 ---
@@ -61,11 +61,11 @@ A pnpm monorepo with three published packages and one example app:
 
 ```
 packages/
-  rdx/                  framework runtime
-  cli/                  the `rdx` binary (commands, generators)
-  create-rdx-app/       `npm create rdx-app` scaffolder
+  avor/                framework runtime
+  cli/                  the `avor` binary (commands, generators)
+  create-avor-app/       `npm create avor-app` scaffolder
 examples/
-  blog-api/             dogfood — full-stack rdx app
+  blog-api/             dogfood — full-stack avor app
 ```
 
 **Boot sequence (`Application.boot()`):**
@@ -88,7 +88,7 @@ User-facing entry is `bootstrap/app.ts`:
 
 ```ts
 import 'reflect-metadata';
-import { Application } from 'rdx';
+import { Application } from 'avor';
 
 export default async function createApp() {
   return new Application(import.meta.dirname)
@@ -107,7 +107,7 @@ export default async function createApp() {
 Laravel-style facade with groups, prefixes, named routes, and route model binding.
 
 ```ts
-import { Route, RequireAuth, type Request } from 'rdx';
+import { Route, RequireAuth, type Request } from 'avor';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 
 Route.get('/health', () => ({ ok: true }));
@@ -129,7 +129,7 @@ Per-route handlers can be either a closure (`(req, res) => ...`) or a `[Controll
 ### Service container & providers
 
 ```ts
-import { Container, ServiceProvider } from 'rdx';
+import { Container, ServiceProvider } from 'avor';
 
 class CacheServiceProvider extends ServiceProvider {
   override register() {
@@ -160,7 +160,7 @@ export const usersTable = pgTable('users', {
 });
 
 // app/Models/User.ts
-import { Model } from 'rdx/database';
+import { Model } from 'avor/database';
 import { usersTable } from '../../database/schema/users.js';
 import { Post } from './Post.js';
 
@@ -182,7 +182,7 @@ const xs = await User.query().where(eq(usersTable.active, true)).orderBy(usersTa
 
 ```ts
 import { z } from 'zod';
-import { Route, validate, FormRequest, type Request } from 'rdx';
+import { Route, validate, FormRequest, type Request } from 'avor';
 
 // Inline middleware
 Route.post('/users',
@@ -207,10 +207,10 @@ Failures return `422 { message, errors: { field: [msg] } }` via `ValidationExcep
 
 ### Auth — better-auth
 
-`Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `rdx/auth`).
+`Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `avor/auth`).
 
 ```ts
-import { Route, RequireAuth, Auth, type Request } from 'rdx';
+import { Route, RequireAuth, Auth, type Request } from 'avor';
 
 Route.get('/me', async (req: Request) => Auth.user(req)).middleware(RequireAuth);
 Route.get('/whoami', async (req: Request) => ({ user: await Auth.user(req) }));
@@ -232,7 +232,7 @@ Better-auth itself accepts plugin extensions (passkeys, OAuth providers, magic-l
 `Mail` facade with templated `Mailable` classes. Handlebars templates from `resources/mail/*.hbs`, or define inline via `source()`.
 
 ```ts
-import { Mailable, Mail } from 'rdx';
+import { Mailable, Mail } from 'avor';
 
 class WelcomeMail extends Mailable<{ name: string; verifyUrl: string }> {
   override subject(p) { return `Welcome ${p.name}!`; }
@@ -247,7 +247,7 @@ await Mail.to(['ops@x.com', 'admin@x.com']).send(AlertMail, { ... });
 
 Transports: `smtp`, `json` (dev/tests — `mailer.sentMessages` records), `stream`, `sendmail`.
 
-**Auth ⇄ mail integration.** When `Mailer` is bound (it is by default) and `config.auth.enabled = true`, the `AuthServiceProvider` wires better-auth's `sendVerificationEmail` and `sendResetPassword` callbacks through `Mail` automatically using the built-in `VerifyEmailMail` and `ResetPasswordMail` mailables (both exported from `rdx`). Override them by passing your own mailables through `config.auth.options.extra`.
+**Auth ⇄ mail integration.** When `Mailer` is bound (it is by default) and `config.auth.enabled = true`, the `AuthServiceProvider` wires better-auth's `sendVerificationEmail` and `sendResetPassword` callbacks through `Mail` automatically using the built-in `VerifyEmailMail` and `ResetPasswordMail` mailables (both exported from `avor`). Override them by passing your own mailables through `config.auth.options.extra`.
 
 ```ts
 auth: {
@@ -264,7 +264,7 @@ auth: {
 
 ```ts
 // app/Console/Schedule.ts
-import { Schedule } from 'rdx';
+import { Schedule } from 'avor';
 
 export default async function (app) {
   Schedule.everyFiveMinutes(() => CleanupTempFiles.run(),     { name: 'temp-cleanup' });
@@ -273,14 +273,14 @@ export default async function (app) {
 }
 ```
 
-Then `pnpm rdx schedule:run` boots the app, registers tasks, and starts crons (Ctrl+C to stop). `pnpm rdx schedule:list` prints a table without starting.
+Then `pnpm avor schedule:run` boots the app, registers tasks, and starts crons (Ctrl+C to stop). `pnpm avor schedule:list` prints a table without starting.
 
 Helpers: `everyMinute / everyFiveMinutes / hourly / daily / dailyAt('HH:MM') / weekly / monthly`. Plus `Schedule.cron(expr, fn, opts?)` for full control. Built on [croner](https://github.com/Hexagon/croner) — overlap protection, timezone, paused-by-default options, all there.
 
 ### File uploads — `@fastify/multipart`
 
 ```ts
-import { Route, Upload, type Request } from 'rdx';
+import { Route, Upload, type Request } from 'avor';
 
 Route.post('/avatar', (req: Request) => {
   const f = req.file('avatar');           // RdxUploadedFile | undefined
@@ -304,10 +304,10 @@ Route.post('/profile', handler).middleware(Upload.fields([
 `make:migration` delegates to `drizzle-kit generate` (you supply `drizzle.config.ts`). `migrate` runs migrations programmatically against the configured driver (`pg` or `pglite` for tests). `db:seed` discovers `database/seeders/*.{ts,mts,js,mjs}` files in alphabetical order; each must default-export `(db, app) => Promise<void>`.
 
 ```bash
-pnpm rdx make:migration init_users
-pnpm rdx migrate
-pnpm rdx db:seed
-pnpm rdx db:seed --only 02-bonus
+pnpm avor make:migration init_users
+pnpm avor migrate
+pnpm avor db:seed
+pnpm avor db:seed --only 02-bonus
 ```
 
 ### Configuration
@@ -334,16 +334,16 @@ pnpm rdx db:seed --only 02-bonus
 | `mail.{host,port,secure,auth,from}`    | SMTP settings                                                       |
 | `mail.templatesPath`                   | Default `resources/mail`                                            |
 
-Full `.env.example` lives in `examples/blog-api/` and the `create-rdx-app` template.
+Full `.env.example` lives in `examples/blog-api/` and the `create-avor-app` template.
 
 ---
 
 ## Repo layout
 
 ```
-rdx.js/
+avor framework/
 ├── packages/
-│   ├── rdx/                                          framework runtime
+│   ├── avor/                                          framework runtime
 │   │   └── src/
 │   │       ├── application.ts                        Application class — boot orchestrator
 │   │       ├── container/                            tsyringe wrapper
@@ -359,9 +359,9 @@ rdx.js/
 │   │       ├── exceptions/                           HttpException tree
 │   │       ├── providers/                            Built-in service providers
 │   │       └── support/                              env(), config(), app(), logger() helpers
-│   ├── cli/                                          `rdx` binary
+│   ├── cli/                                          `avor` binary
 │   │   └── src/commands/                             serve, route:list, make:*, migrate, db:seed, schedule:*
-│   └── create-rdx-app/                               `npm create rdx-app` scaffolder + default template
+│   └── create-avor-app/                               `npm create avor-app` scaffolder + default template
 └── examples/
     └── blog-api/                                     dogfood app
 ```
@@ -374,16 +374,16 @@ rdx.js/
 
 ```bash
 pnpm install
-pnpm -r build            # rdx must be built before CLI tests run, since CLI fixtures resolve `from 'rdx'` against dist/
+pnpm -r build            # avor must be built before CLI tests run, since CLI fixtures resolve `from 'avor'` against dist/
 pnpm -r test
 ```
 
 Current counts:
 
 ```
-packages/rdx              70 tests across 10 files
+packages/avor              70 tests across 10 files
 packages/cli              15 tests across  5 files
-packages/create-rdx-app    4 tests
+packages/create-avor-app    4 tests
                        —  89 total
 ```
 

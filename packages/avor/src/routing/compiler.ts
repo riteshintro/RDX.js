@@ -13,7 +13,7 @@ import {
 import type { RouteDef } from './route-definition.js';
 import type { Router } from './router.js';
 
-const SCOPE_KEY = Symbol.for('rdx.scope');
+const SCOPE_KEY = Symbol.for('avor.scope');
 
 export class RouteCompiler {
   constructor(private readonly container: Container) {}

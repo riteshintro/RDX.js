@@ -1,17 +1,17 @@
 {
-  "name": "rdx",
-  "version": "0.0.1",
+  "name": "avor",
+  "version": "0.0.2",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/riteshintro/RDX.js.git",
-    "directory": "packages/rdx"
+    "directory": "packages/avor"
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
-  "keywords": ["framework", "laravel", "fastify", "drizzle", "typescript", "rdx", "nodejs", "api"],
+  "keywords": ["framework", "laravel", "fastify", "drizzle", "typescript", "avor", "nodejs", "api"],
   "engines": { "node": ">=20" },
   "type": "module",
   "main": "./dist/index.js",

@@ -6,7 +6,7 @@ import pc from 'picocolors';
 import { pascalCase } from '../util/case.js';
 import type { MakeOpts } from './make-controller.js';
 
-const TEMPLATE = `import type { Middleware, Request, Response } from 'rdx';
+const TEMPLATE = `import type { Middleware, Request, Response } from 'avor';
 import type { NextFunction } from 'express';
 import { injectable } from 'tsyringe';
 

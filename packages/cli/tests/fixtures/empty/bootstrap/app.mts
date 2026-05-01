@@ -1,4 +1,4 @@
-import { Application } from 'rdx';
+import { Application } from 'avor';
 
 export default async function () {
   return new Application(process.cwd()).withConfig({

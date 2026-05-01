@@ -33,7 +33,7 @@ let dir: string;
 let app: Application;
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'rdx-mail-'));
+  dir = await mkdtemp(join(tmpdir(), 'avor-mail-'));
   await mkdir(join(dir, 'resources/mail'), { recursive: true });
   await writeFile(
     join(dir, 'resources/mail/welcome.hbs'),

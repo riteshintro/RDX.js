@@ -88,7 +88,7 @@ export class HttpKernel {
     this.server = this.fastify.server;
     const addr = this.server.address();
     const actualPort = typeof addr === 'object' && addr ? addr.port : port;
-    this.logger.info({ host, port: actualPort }, 'rdx server listening');
+    this.logger.info({ host, port: actualPort }, 'avor server listening');
     return this.server;
   }
 

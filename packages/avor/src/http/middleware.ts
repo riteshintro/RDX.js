@@ -18,7 +18,7 @@ export type FastifyHookFn =
 
 export type MiddlewareLike = MiddlewareClass | Middleware | MiddlewareFn | FastifyHookFn;
 
-const MIDDLEWARE_MARK = Symbol.for('rdx.middleware');
+const MIDDLEWARE_MARK = Symbol.for('avor.middleware');
 
 export function defineMiddleware(fn: MiddlewareFn): preHandlerAsyncHookHandler {
   const wrapped: preHandlerAsyncHookHandler = async (req, reply) => {
@@ -102,8 +102,8 @@ async function runWithNextStyle(call: (next: Next) => unknown | Promise<unknown>
   await nextPromise;
 }
 
-const REQUEST_KEY = Symbol.for('rdx.request');
-const RESPONSE_KEY = Symbol.for('rdx.response');
+const REQUEST_KEY = Symbol.for('avor.request');
+const RESPONSE_KEY = Symbol.for('avor.response');
 
 export function toRequest(raw: FastifyRequest): Request {
   const cached = (raw as unknown as { [REQUEST_KEY]?: Request })[REQUEST_KEY];

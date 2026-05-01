@@ -1,8 +1,8 @@
-import { Application } from 'rdx';
+import { Application } from 'avor';
 import { PGlite } from '@electric-sql/pglite';
 import { drizzle } from 'drizzle-orm/pglite';
 
-const KEY = '__rdx_test_pglite';
+const KEY = '__avor_test_pglite';
 const g = globalThis as Record<string, unknown>;
 
 export default async function () {

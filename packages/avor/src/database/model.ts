@@ -13,7 +13,7 @@ type AnyDb = {
   delete: (table: AnyTable) => any;
 };
 
-const ATTRS = Symbol.for('rdx.modelAttrs');
+const ATTRS = Symbol.for('avor.modelAttrs');
 
 export abstract class Model {
   static table: AnyTable;

@@ -9,7 +9,7 @@ export interface ScaffoldOpts {
   name: string;
   targetDir: string;
   templateDir?: string;
-  rdxVersion?: string;
+  avorVersion?: string;
   cliVersion?: string;
 }
 
@@ -50,7 +50,7 @@ async function copyDir(src: string, dst: string, opts: ScaffoldOpts): Promise<vo
 function applyTemplate(content: string, opts: ScaffoldOpts): string {
   return content
     .replace(/__APP_NAME__/g, opts.name)
-    .replace(/__RDX_VERSION__/g, opts.rdxVersion ?? '^0.0.1')
+    .replace(/__RDX_VERSION__/g, opts.avorVersion ?? '^0.0.1')
     .replace(/__CLI_VERSION__/g, opts.cliVersion ?? '^0.0.1');
 }
 

@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "rdx": "tsx ../../packages/cli/dist/bin.js",
+    "avor": "tsx ../../packages/cli/dist/bin.js",
     "dev": "tsx ../../packages/cli/dist/bin.js serve",
     "routes": "tsx ../../packages/cli/dist/bin.js route:list",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@rdx/cli": "workspace:*",
+    "@avor/cli": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
-    "rdx": "workspace:*",
+    "avor": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^4.0.0"

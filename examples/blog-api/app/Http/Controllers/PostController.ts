@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import type { Request, Response } from 'rdx';
+import type { Request, Response } from 'avor';
 import { Post } from '../../Models/Post.js';
 
 @injectable()

@@ -50,24 +50,24 @@ jobs:
       - name: Test
         run: pnpm -r test
 
-      - name: Publish rdx
+      - name: Publish avor
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
-        working-directory: packages/rdx
+        working-directory: packages/avor
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish @rdx/cli
+      - name: Publish @avor/cli
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
         working-directory: packages/cli
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish create-rdx-app
+      - name: Publish create-avor-app
         if: ${{ !inputs.dry_run }}
         run: pnpm publish --access public --no-git-checks --provenance
-        working-directory: packages/create-rdx-app
+        working-directory: packages/create-avor-app
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -75,7 +75,7 @@ jobs:
         if: ${{ inputs.dry_run }}
         run: |
           echo "Dry run — would have published:"
-          for pkg in packages/rdx packages/cli packages/create-rdx-app; do
+          for pkg in packages/avor packages/cli packages/create-avor-app; do
             name=$(node -p "require('./$pkg/package.json').name")
             ver=$(node -p "require('./$pkg/package.json').version")
             echo "  $name@$ver"

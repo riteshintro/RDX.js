@@ -22,7 +22,7 @@ export function createAuth(args: CreateAuthArgs) {
       provider: 'pg',
       schema: opts.schema ?? authSchema,
     }),
-    secret: opts.secret ?? process.env.BETTER_AUTH_SECRET ?? 'rdx-dev-secret-do-not-use-in-prod',
+    secret: opts.secret ?? process.env.BETTER_AUTH_SECRET ?? 'avor-dev-secret-do-not-use-in-prod',
     baseURL: opts.baseURL ?? process.env.BETTER_AUTH_URL,
     emailAndPassword: {
       enabled: opts.emailAndPassword?.enabled ?? true,

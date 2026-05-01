@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { z } from 'zod';
-import { FormRequest } from 'rdx/validation';
+import { FormRequest } from 'avor/validation';
 
 @injectable()
 export class StorePostRequest extends FormRequest {

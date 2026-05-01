@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Application } from 'rdx';
+import { Application } from 'avor';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 
