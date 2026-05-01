@@ -21,14 +21,14 @@ describe('makeAuth', () => {
     await makeAuth({ cwd: dir });
 
     const schema = await readFile(join(dir, 'database/schema/auth.ts'), 'utf8');
-    expect(schema).toContain("from 'avox/auth'");
+    expect(schema).toContain("from 'avoxjs/auth'");
     expect(schema).toMatch(/userTable as user/);
     expect(schema).toMatch(/sessionTable as session/);
     expect(schema).toMatch(/accountTable as account/);
     expect(schema).toMatch(/verificationTable as verification/);
 
     const mw = await readFile(join(dir, 'app/Http/Middleware/RequireAuth.ts'), 'utf8');
-    expect(mw).toContain("export { RequireAuth } from 'avox'");
+    expect(mw).toContain("export { RequireAuth } from 'avoxjs'");
   });
 
   it('rejects when files already exist unless --force', async () => {

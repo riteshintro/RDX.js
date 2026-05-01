@@ -5,7 +5,7 @@ import pc from 'picocolors';
 import { pascalCase, kebabCase } from '../util/case.js';
 import type { MakeOpts } from './make-controller.js';
 
-const CLASS_TEMPLATE = `import { Mailable } from 'avox/mail';
+const CLASS_TEMPLATE = `import { Mailable } from 'avoxjs/mail';
 
 export interface __CLASS__Payload {
   // shape your payload here

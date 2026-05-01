@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { z } from 'zod';
-import { FormRequest } from 'avox/validation';
+import { FormRequest } from 'avoxjs/validation';
 
 @injectable()
 export class StorePostRequest extends FormRequest {

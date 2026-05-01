@@ -3,10 +3,10 @@
 A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** + **TypeScript ESM**.
 
 [![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
-[![npm avor](https://img.shields.io/npm/v/avox?label=avox)](https://www.npmjs.com/package/avox)
+[![npm avor](https://img.shields.io/npm/v/avoxjs?label=avoxjs)](https://www.npmjs.com/package/avoxjs)
 [![npm avor-cli](https://img.shields.io/npm/v/@avoxjs/cli?label=%40avoxjs%2Fcli)](https://www.npmjs.com/package/@avoxjs/cli)
 [![npm create-avox-app](https://img.shields.io/npm/v/create-avox-app?label=create-avox-app)](https://www.npmjs.com/package/create-avox-app)
-[![license](https://img.shields.io/npm/l/avox)](LICENSE)
+[![license](https://img.shields.io/npm/l/avoxjs)](LICENSE)
 
 It gives Laravel's developer ergonomics (service container, providers, route facade, Active Record on top of an ORM, artisan-style CLI, scheduler, mail) without leaving the Node ecosystem. Targets JSON APIs.
 
@@ -27,7 +27,7 @@ pnpm avox serve             # → http://127.0.0.1:8000
 ## Install in an existing project
 
 ```bash
-pnpm add avox
+pnpm add avoxjs
 pnpm add -D @avoxjs/cli tsx drizzle-kit
 ```
 
@@ -88,7 +88,7 @@ User-facing entry is `bootstrap/app.ts`:
 
 ```ts
 import 'reflect-metadata';
-import { Application } from 'avox';
+import { Application } from 'avoxjs';
 
 export default async function createApp() {
   return new Application(import.meta.dirname)
@@ -107,7 +107,7 @@ export default async function createApp() {
 Laravel-style facade with groups, prefixes, named routes, and route model binding.
 
 ```ts
-import { Route, RequireAuth, type Request } from 'avox';
+import { Route, RequireAuth, type Request } from 'avoxjs';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 
 Route.get('/health', () => ({ ok: true }));
@@ -129,7 +129,7 @@ Per-route handlers can be either a closure (`(req, res) => ...`) or a `[Controll
 ### Service container & providers
 
 ```ts
-import { Container, ServiceProvider } from 'avox';
+import { Container, ServiceProvider } from 'avoxjs';
 
 class CacheServiceProvider extends ServiceProvider {
   override register() {
@@ -160,7 +160,7 @@ export const usersTable = pgTable('users', {
 });
 
 // app/Models/User.ts
-import { Model } from 'avox/database';
+import { Model } from 'avoxjs/database';
 import { usersTable } from '../../database/schema/users.js';
 import { Post } from './Post.js';
 
@@ -182,7 +182,7 @@ const xs = await User.query().where(eq(usersTable.active, true)).orderBy(usersTa
 
 ```ts
 import { z } from 'zod';
-import { Route, validate, FormRequest, type Request } from 'avox';
+import { Route, validate, FormRequest, type Request } from 'avoxjs';
 
 // Inline middleware
 Route.post('/users',
@@ -210,7 +210,7 @@ Failures return `422 { message, errors: { field: [msg] } }` via `ValidationExcep
 `Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `avox/auth`).
 
 ```ts
-import { Route, RequireAuth, Auth, type Request } from 'avox';
+import { Route, RequireAuth, Auth, type Request } from 'avoxjs';
 
 Route.get('/me', async (req: Request) => Auth.user(req)).middleware(RequireAuth);
 Route.get('/whoami', async (req: Request) => ({ user: await Auth.user(req) }));
@@ -232,7 +232,7 @@ Better-auth itself accepts plugin extensions (passkeys, OAuth providers, magic-l
 `Mail` facade with templated `Mailable` classes. Handlebars templates from `resources/mail/*.hbs`, or define inline via `source()`.
 
 ```ts
-import { Mailable, Mail } from 'avox';
+import { Mailable, Mail } from 'avoxjs';
 
 class WelcomeMail extends Mailable<{ name: string; verifyUrl: string }> {
   override subject(p) { return `Welcome ${p.name}!`; }
@@ -264,7 +264,7 @@ auth: {
 
 ```ts
 // app/Console/Schedule.ts
-import { Schedule } from 'avox';
+import { Schedule } from 'avoxjs';
 
 export default async function (app) {
   Schedule.everyFiveMinutes(() => CleanupTempFiles.run(),     { name: 'temp-cleanup' });
@@ -280,7 +280,7 @@ Helpers: `everyMinute / everyFiveMinutes / hourly / daily / dailyAt('HH:MM') / w
 ### File uploads — `@fastify/multipart`
 
 ```ts
-import { Route, Upload, type Request } from 'avox';
+import { Route, Upload, type Request } from 'avoxjs';
 
 Route.post('/avatar', (req: Request) => {
   const f = req.file('avatar');           // RdxUploadedFile | undefined
@@ -374,7 +374,7 @@ avox framework/
 
 ```bash
 pnpm install
-pnpm -r build            # avor must be built before CLI tests run, since CLI fixtures resolve `from "avox"` against dist/
+pnpm -r build            # avor must be built before CLI tests run, since CLI fixtures resolve `from "avoxjs"` against dist/
 pnpm -r test
 ```
 

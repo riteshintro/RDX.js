@@ -1,4 +1,4 @@
-import { Application } from 'avox';
+import { Application } from 'avoxjs';
 import { PGlite } from '@electric-sql/pglite';
 import { drizzle } from 'drizzle-orm/pglite';
 

@@ -1,6 +1,6 @@
 {
   "name": "@avoxjs/cli",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "avox framework command-line interface",
   "license": "MIT",
   "author": "riteshintro",
@@ -41,7 +41,7 @@
     "drizzle-orm": "^0.45.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1",
-    "avox": "workspace:*",
+    "avoxjs": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.2"

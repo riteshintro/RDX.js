@@ -10,12 +10,12 @@ export {
   sessionTable as session,
   accountTable as account,
   verificationTable as verification,
-} from 'avox/auth';
+} from 'avoxjs/auth';
 `;
 
 const MIDDLEWARE_FILE = `// Re-export RequireAuth so it's discoverable in your app's middleware folder.
 // Use it in routes: Route.post('/posts', [...]).middleware(RequireAuth)
-export { RequireAuth } from 'avox';
+export { RequireAuth } from 'avoxjs';
 `;
 
 export interface MakeAuthOpts {

@@ -15,7 +15,7 @@
     "@avoxjs/cli": "__CLI_VERSION__",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
-    "avox": "__RDX_VERSION__",
+    "avoxjs": "__RDX_VERSION__",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^4.0.0"

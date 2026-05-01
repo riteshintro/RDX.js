@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Application } from 'avox';
+import { Application } from 'avoxjs';
 import { fileURLToPath } from 'node:url';
 import { resolve } from 'node:path';
 

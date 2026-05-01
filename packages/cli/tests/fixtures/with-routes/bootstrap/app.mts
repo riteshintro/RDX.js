@@ -1,4 +1,4 @@
-import { Application, Route } from 'avox';
+import { Application, Route } from 'avoxjs';
 
 export default async function () {
   return new Application(process.cwd())

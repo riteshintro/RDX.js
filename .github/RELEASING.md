@@ -4,7 +4,7 @@ avox publishes three packages from this monorepo:
 
 | Package          | npm                                                   |
 |------------------|-------------------------------------------------------|
-| `avox`            | https://www.npmjs.com/package/avox                     |
+| `avoxjs`            | https://www.npmjs.com/package/avoxjs                     |
 | `@avoxjs/cli`       | https://www.npmjs.com/package/@avoxjs/cli                |
 | `create-avox-app` | https://www.npmjs.com/package/create-avox-app          |
 
@@ -46,7 +46,7 @@ GitHub → Actions → **publish** → **Run workflow**. Tick **dry run** to see
 
 ## Workspace deps & versioning
 
-`@avoxjs/cli` depends on `avox` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `avox` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
+`@avoxjs/cli` depends on `avoxjs` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `avoxjs` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
 
 ## Re-publishing the same version
 

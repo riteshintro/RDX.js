@@ -29,7 +29,7 @@ importers:
       '@avoxjs/cli':
         specifier: workspace:*
         version: link:../../packages/cli
-      avox:
+      avoxjs:
         specifier: workspace:*
         version: link:../../packages/avox
       drizzle-orm:
@@ -148,7 +148,7 @@ importers:
 
   packages/cli:
     dependencies:
-      avox:
+      avoxjs:
         specifier: workspace:*
         version: link:../avox
       cac:

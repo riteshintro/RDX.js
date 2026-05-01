@@ -1,4 +1,4 @@
-import { Model } from 'avox/database';
+import { Model } from 'avoxjs/database';
 import { postsTable } from '../../database/schema/posts.js';
 
 export class Post extends Model {
