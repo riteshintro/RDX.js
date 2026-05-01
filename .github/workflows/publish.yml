@@ -41,11 +41,11 @@ jobs:
       - name: Approve build scripts
         run: pnpm rebuild esbuild @swc/core
 
-      - name: Typecheck
-        run: pnpm -r typecheck
-
       - name: Build
         run: pnpm -r build
+
+      - name: Typecheck
+        run: pnpm -r typecheck
 
       - name: Test
         run: pnpm -r test
