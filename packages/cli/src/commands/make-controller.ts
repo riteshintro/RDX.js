@@ -5,7 +5,7 @@ import Handlebars from 'handlebars';
 import pc from 'picocolors';
 import { pascalCase } from '../util/case.js';
 
-const TEMPLATE = `import type { Request, Response } from '@avoxjs/avox';
+const TEMPLATE = `import type { Request, Response } from 'fastjs';
 
 export class {{className}} {
   index(_req: Request, _res: Response) {

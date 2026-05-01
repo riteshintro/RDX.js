@@ -9,7 +9,7 @@ import { makeModel } from '../commands/make-model.js';
 let dir: string;
 
 beforeEach(async () => {
-  dir = await mkdtemp(join(tmpdir(), 'avox-gen-'));
+  dir = await mkdtemp(join(tmpdir(), 'fastjs-gen-'));
 });
 
 afterEach(async () => {
@@ -22,7 +22,7 @@ describe('makeController', () => {
     expect(path.endsWith('UserController.ts')).toBe(true);
     const src = await readFile(path, 'utf8');
     expect(src).toContain('export class UserController');
-    expect(src).toContain("from '@avoxjs/avox'");
+    expect(src).toContain("from 'fastjs'");
   });
 
   it('does not double-suffix Controller', async () => {

@@ -4,16 +4,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "avox": "tsx ../../packages/cli/dist/bin.js",
+    "fastjs": "tsx ../../packages/cli/dist/bin.js",
     "dev": "tsx ../../packages/cli/dist/bin.js serve",
     "routes": "tsx ../../packages/cli/dist/bin.js route:list",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@avoxjs/cli": "workspace:*",
+    "fastjs-cli": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
-    "@avoxjs/avox": "workspace:*",
+    "fastjs": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^4.0.0"

@@ -1,12 +1,12 @@
-# avox
+# fastjs
 
 A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** + **TypeScript ESM**.
 
 [![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
-[![npm avor](https://img.shields.io/npm/v/%40avoxjs%2Favox?label=%40avoxjs%2Favox)](https://www.npmjs.com/package/@avoxjs/avox)
-[![npm avor-cli](https://img.shields.io/npm/v/@avoxjs/cli?label=%40avoxjs%2Fcli)](https://www.npmjs.com/package/@avoxjs/cli)
-[![npm create-avox-app](https://img.shields.io/npm/v/create-avox-app?label=create-avox-app)](https://www.npmjs.com/package/create-avox-app)
-[![license](https://img.shields.io/npm/l/@avoxjs%2Favox)](LICENSE)
+[![npm avor](https://img.shields.io/npm/v/%40avoxjs%2Favox?label=%40avoxjs%2Favox)](https://www.npmjs.com/package/fastjs)
+[![npm avor-cli](https://img.shields.io/npm/v/fastjs-cli?label=%40avoxjs%2Fcli)](https://www.npmjs.com/package/fastjs-cli)
+[![npm create-fastjs-app](https://img.shields.io/npm/v/create-fastjs-app?label=create-fastjs-app)](https://www.npmjs.com/package/create-fastjs-app)
+[![license](https://img.shields.io/npm/l/fastjs%2Favox)](LICENSE)
 
 It gives Laravel's developer ergonomics (service container, providers, route facade, Active Record on top of an ORM, artisan-style CLI, scheduler, mail) without leaving the Node ecosystem. Targets JSON APIs.
 
@@ -17,40 +17,40 @@ It gives Laravel's developer ergonomics (service container, providers, route fac
 ## Quick start
 
 ```bash
-npm create avox-app@latest my-api
+npm create fastjs-app@latest my-api
 cd my-api
 pnpm install
 cp .env.example .env       # set DATABASE_URL + BETTER_AUTH_SECRET
-pnpm avox serve             # → http://127.0.0.1:8000
+pnpm fastjs serve             # → http://127.0.0.1:8000
 ```
 
 ## Install in an existing project
 
 ```bash
-pnpm add @avoxjs/avox
-pnpm add -D @avoxjs/cli tsx drizzle-kit
+pnpm add fastjs
+pnpm add -D fastjs-cli tsx drizzle-kit
 ```
 
 Generators:
 
 ```bash
-pnpm avox make:controller User
-pnpm avox make:model       User
-pnpm avox make:middleware  RequireAuth
-pnpm avox make:migration   create_users_table
-pnpm avox make:auth                  # scaffolds better-auth schema + RequireAuth re-export
-pnpm avox make:mail        Welcome
+pnpm fastjs make:controller User
+pnpm fastjs make:model       User
+pnpm fastjs make:middleware  RequireAuth
+pnpm fastjs make:migration   create_users_table
+pnpm fastjs make:auth                  # scaffolds better-auth schema + RequireAuth re-export
+pnpm fastjs make:mail        Welcome
 ```
 
 Operational commands:
 
 ```bash
-pnpm avox serve              # start the Fastify server
-pnpm avox route:list         # print the route table
-pnpm avox migrate            # apply pending Drizzle migrations
-pnpm avox db:seed            # run database/seeders/*
-pnpm avox schedule:list      # list registered scheduled tasks
-pnpm avox schedule:run       # start the cron scheduler (Ctrl+C to stop)
+pnpm fastjs serve              # start the Fastify server
+pnpm fastjs route:list         # print the route table
+pnpm fastjs migrate            # apply pending Drizzle migrations
+pnpm fastjs db:seed            # run database/seeders/*
+pnpm fastjs schedule:list      # list registered scheduled tasks
+pnpm fastjs schedule:run       # start the cron scheduler (Ctrl+C to stop)
 ```
 
 ---
@@ -62,8 +62,8 @@ A pnpm monorepo with three published packages and one example app:
 ```
 packages/
   avox/               framework runtime
-  cli/                  the `avox` binary (commands, generators)
-  create-avox-app/       `npm create avox-app` scaffolder
+  cli/                  the `fastjs` binary (commands, generators)
+  create-fastjs-app/       `npm create fastjs-app` scaffolder
 examples/
   blog-api/             dogfood — full-stack avox app
 ```
@@ -88,7 +88,7 @@ User-facing entry is `bootstrap/app.ts`:
 
 ```ts
 import 'reflect-metadata';
-import { Application } from '@avoxjs/avox';
+import { Application } from 'fastjs';
 
 export default async function createApp() {
   return new Application(import.meta.dirname)
@@ -107,7 +107,7 @@ export default async function createApp() {
 Laravel-style facade with groups, prefixes, named routes, and route model binding.
 
 ```ts
-import { Route, RequireAuth, type Request } from '@avoxjs/avox';
+import { Route, RequireAuth, type Request } from 'fastjs';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 
 Route.get('/health', () => ({ ok: true }));
@@ -129,7 +129,7 @@ Per-route handlers can be either a closure (`(req, res) => ...`) or a `[Controll
 ### Service container & providers
 
 ```ts
-import { Container, ServiceProvider } from '@avoxjs/avox';
+import { Container, ServiceProvider } from 'fastjs';
 
 class CacheServiceProvider extends ServiceProvider {
   override register() {
@@ -160,7 +160,7 @@ export const usersTable = pgTable('users', {
 });
 
 // app/Models/User.ts
-import { Model } from '@avoxjs/avox/database';
+import { Model } from 'fastjs/database';
 import { usersTable } from '../../database/schema/users.js';
 import { Post } from './Post.js';
 
@@ -182,7 +182,7 @@ const xs = await User.query().where(eq(usersTable.active, true)).orderBy(usersTa
 
 ```ts
 import { z } from 'zod';
-import { Route, validate, FormRequest, type Request } from '@avoxjs/avox';
+import { Route, validate, FormRequest, type Request } from 'fastjs';
 
 // Inline middleware
 Route.post('/users',
@@ -207,10 +207,10 @@ Failures return `422 { message, errors: { field: [msg] } }` via `ValidationExcep
 
 ### Auth — better-auth
 
-`Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `avox/auth`).
+`Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `fastjs/auth`).
 
 ```ts
-import { Route, RequireAuth, Auth, type Request } from '@avoxjs/avox';
+import { Route, RequireAuth, Auth, type Request } from 'fastjs';
 
 Route.get('/me', async (req: Request) => Auth.user(req)).middleware(RequireAuth);
 Route.get('/whoami', async (req: Request) => ({ user: await Auth.user(req) }));
@@ -232,7 +232,7 @@ Better-auth itself accepts plugin extensions (passkeys, OAuth providers, magic-l
 `Mail` facade with templated `Mailable` classes. Handlebars templates from `resources/mail/*.hbs`, or define inline via `source()`.
 
 ```ts
-import { Mailable, Mail } from '@avoxjs/avox';
+import { Mailable, Mail } from 'fastjs';
 
 class WelcomeMail extends Mailable<{ name: string; verifyUrl: string }> {
   override subject(p) { return `Welcome ${p.name}!`; }
@@ -247,7 +247,7 @@ await Mail.to(['ops@x.com', 'admin@x.com']).send(AlertMail, { ... });
 
 Transports: `smtp`, `json` (dev/tests — `mailer.sentMessages` records), `stream`, `sendmail`.
 
-**Auth ⇄ mail integration.** When `Mailer` is bound (it is by default) and `config.auth.enabled = true`, the `AuthServiceProvider` wires better-auth's `sendVerificationEmail` and `sendResetPassword` callbacks through `Mail` automatically using the built-in `VerifyEmailMail` and `ResetPasswordMail` mailables (both exported from `avox`). Override them by passing your own mailables through `config.auth.options.extra`.
+**Auth ⇄ mail integration.** When `Mailer` is bound (it is by default) and `config.auth.enabled = true`, the `AuthServiceProvider` wires better-auth's `sendVerificationEmail` and `sendResetPassword` callbacks through `Mail` automatically using the built-in `VerifyEmailMail` and `ResetPasswordMail` mailables (both exported from `fastjs`). Override them by passing your own mailables through `config.auth.options.extra`.
 
 ```ts
 auth: {
@@ -264,7 +264,7 @@ auth: {
 
 ```ts
 // app/Console/Schedule.ts
-import { Schedule } from '@avoxjs/avox';
+import { Schedule } from 'fastjs';
 
 export default async function (app) {
   Schedule.everyFiveMinutes(() => CleanupTempFiles.run(),     { name: 'temp-cleanup' });
@@ -273,14 +273,14 @@ export default async function (app) {
 }
 ```
 
-Then `pnpm avox schedule:run` boots the app, registers tasks, and starts crons (Ctrl+C to stop). `pnpm avox schedule:list` prints a table without starting.
+Then `pnpm fastjs schedule:run` boots the app, registers tasks, and starts crons (Ctrl+C to stop). `pnpm fastjs schedule:list` prints a table without starting.
 
 Helpers: `everyMinute / everyFiveMinutes / hourly / daily / dailyAt('HH:MM') / weekly / monthly`. Plus `Schedule.cron(expr, fn, opts?)` for full control. Built on [croner](https://github.com/Hexagon/croner) — overlap protection, timezone, paused-by-default options, all there.
 
 ### File uploads — `@fastify/multipart`
 
 ```ts
-import { Route, Upload, type Request } from '@avoxjs/avox';
+import { Route, Upload, type Request } from 'fastjs';
 
 Route.post('/avatar', (req: Request) => {
   const f = req.file('avatar');           // RdxUploadedFile | undefined
@@ -304,10 +304,10 @@ Route.post('/profile', handler).middleware(Upload.fields([
 `make:migration` delegates to `drizzle-kit generate` (you supply `drizzle.config.ts`). `migrate` runs migrations programmatically against the configured driver (`pg` or `pglite` for tests). `db:seed` discovers `database/seeders/*.{ts,mts,js,mjs}` files in alphabetical order; each must default-export `(db, app) => Promise<void>`.
 
 ```bash
-pnpm avox make:migration init_users
-pnpm avox migrate
-pnpm avox db:seed
-pnpm avox db:seed --only 02-bonus
+pnpm fastjs make:migration init_users
+pnpm fastjs migrate
+pnpm fastjs db:seed
+pnpm fastjs db:seed --only 02-bonus
 ```
 
 ### Configuration
@@ -334,14 +334,14 @@ pnpm avox db:seed --only 02-bonus
 | `mail.{host,port,secure,auth,from}`    | SMTP settings                                                       |
 | `mail.templatesPath`                   | Default `resources/mail`                                            |
 
-Full `.env.example` lives in `examples/blog-api/` and the `create-avox-app` template.
+Full `.env.example` lives in `examples/blog-api/` and the `create-fastjs-app` template.
 
 ---
 
 ## Repo layout
 
 ```
-avox framework/
+fastjs framework/
 ├── packages/
 │   ├── avox/                                         framework runtime
 │   │   └── src/
@@ -359,9 +359,9 @@ avox framework/
 │   │       ├── exceptions/                           HttpException tree
 │   │       ├── providers/                            Built-in service providers
 │   │       └── support/                              env(), config(), app(), logger() helpers
-│   ├── cli/                                          `avox` binary
+│   ├── cli/                                          `fastjs` binary
 │   │   └── src/commands/                             serve, route:list, make:*, migrate, db:seed, schedule:*
-│   └── create-avox-app/                               `npm create avox-app` scaffolder + default template
+│   └── create-fastjs-app/                               `npm create fastjs-app` scaffolder + default template
 └── examples/
     └── blog-api/                                     dogfood app
 ```
@@ -374,16 +374,16 @@ avox framework/
 
 ```bash
 pnpm install
-pnpm -r build            # avor must be built before CLI tests run, since CLI fixtures resolve `from "@avoxjs/avox"` against dist/
+pnpm -r build            # avor must be built before CLI tests run, since CLI fixtures resolve `from "fastjs"` against dist/
 pnpm -r test
 ```
 
 Current counts:
 
 ```
-packages/avox              70 tests across 10 files
+packages/fastjs              70 tests across 10 files
 packages/cli              15 tests across  5 files
-packages/create-avox-app    4 tests
+packages/create-fastjs-app    4 tests
                        —  89 total
 ```
 

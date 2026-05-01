@@ -1,7 +1,7 @@
 {
-  "name": "@avoxjs/cli",
-  "version": "0.0.10",
-  "description": "avox framework command-line interface",
+  "name": "fastjs-cli",
+  "version": "0.0.11",
+  "description": "fastjs framework command-line interface",
   "license": "MIT",
   "author": "riteshintro",
   "repository": {
@@ -12,7 +12,7 @@
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
   "keywords": [
-    "avox",
+    "fastjs",
     "cli",
     "fastify",
     "laravel",
@@ -24,7 +24,7 @@
   },
   "type": "module",
   "bin": {
-    "avox": "./dist/bin.js"
+    "fastjs": "./dist/bin.js"
   },
   "files": [
     "dist"
@@ -41,7 +41,7 @@
     "drizzle-orm": "^0.45.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1",
-    "@avoxjs/avox": "workspace:*",
+    "fastjs": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.2"

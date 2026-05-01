@@ -3,14 +3,14 @@ import { cac } from 'cac';
 import pc from 'picocolors';
 import { scaffold } from './scaffold.js';
 
-const cli = cac('create-avox-app');
+const cli = cac('create-fastjs-app');
 
 cli
-  .command('[name]', 'Create a new avox application')
+  .command('[name]', 'Create a new fastjs application')
   .option('--avox-version <v>', 'avox version', { default: '^0.0.1' })
-  .option('--cli-version <v>', '@avoxjs/cli version', { default: '^0.0.1' })
+  .option('--cli-version <v>', 'fastjs-cli version', { default: '^0.0.1' })
   .action(async (name: string | undefined, opts: { avorVersion?: string; cliVersion?: string }) => {
-    const projectName = name ?? 'my-avox-app';
+    const projectName = name ?? 'my-fastjs-app';
     const targetDir = resolve(process.cwd(), projectName);
     console.log(pc.bold(`\nCreating ${pc.cyan(projectName)} at ${pc.dim(targetDir)}\n`));
     await scaffold({
@@ -24,7 +24,7 @@ cli
     console.log(`  cd ${projectName}`);
     console.log('  pnpm install');
     console.log('  cp .env.example .env  # set DATABASE_URL');
-    console.log('  pnpm avox serve');
+    console.log('  pnpm fastjs serve');
     console.log('');
   });
 
