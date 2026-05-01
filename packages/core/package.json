@@ -1,6 +1,6 @@
 {
-  "name": "fyron",
-  "version": "0.1.0",
+  "name": "fyronjs",
+  "version": "0.1.1",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
   "license": "MIT",
   "author": "riteshintro",

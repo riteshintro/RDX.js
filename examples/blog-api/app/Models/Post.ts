@@ -1,4 +1,4 @@
-import { Model } from 'fyron/database';
+import { Model } from 'fyronjs/database';
 import { postsTable } from '../../database/schema/posts.js';
 
 export class Post extends Model {

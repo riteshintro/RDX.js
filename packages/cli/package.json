@@ -1,6 +1,6 @@
 {
   "name": "@fyron/cli",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "fyron framework command-line interface",
   "license": "MIT",
   "author": "riteshintro",
@@ -41,7 +41,7 @@
     "drizzle-orm": "^0.45.2",
     "handlebars": "^4.7.8",
     "picocolors": "^1.1.1",
-    "fyron": "workspace:*",
+    "fyronjs": "workspace:*",
     "reflect-metadata": "^0.2.2",
     "tinyglobby": "^0.2.10",
     "tsx": "^4.19.2"

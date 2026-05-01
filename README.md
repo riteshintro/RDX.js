@@ -3,10 +3,10 @@
 A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** + **TypeScript ESM**.
 
 [![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
-[![npm fyron](https://img.shields.io/npm/v/fyron?label=fyron)](https://www.npmjs.com/package/fyron)
-[![npm fyron-cli](https://img.shields.io/npm/v/@fyron/cli?label=%40fyron%2Fcli)](https://www.npmjs.com/package/@fyron/cli)
+[![npm fyronjs](https://img.shields.io/npm/v/fyronjs?label=fyronjs)](https://www.npmjs.com/package/fyronjs)
+[![npm @fyron/cli](https://img.shields.io/npm/v/@fyron/cli?label=%40fyron%2Fcli)](https://www.npmjs.com/package/@fyron/cli)
 [![npm create-fyron-app](https://img.shields.io/npm/v/create-fyron-app?label=create-fyron-app)](https://www.npmjs.com/package/create-fyron-app)
-[![license](https://img.shields.io/npm/l/fyron)](LICENSE)
+[![license](https://img.shields.io/npm/l/fyronjs)](LICENSE)
 
 It gives Laravel's developer ergonomics (service container, providers, route facade, Active Record on top of an ORM, artisan-style CLI, scheduler, mail) without leaving the Node ecosystem. Targets JSON APIs.
 
@@ -27,7 +27,7 @@ pnpm fyron serve             # → http://127.0.0.1:8000
 ## Install in an existing project
 
 ```bash
-pnpm add fyron
+pnpm add fyronjs
 pnpm add -D @fyron/cli tsx drizzle-kit
 ```
 
@@ -61,7 +61,7 @@ A pnpm monorepo with three published packages and one example app:
 
 ```
 packages/
-  core/               framework runtime
+  core/               framework runtime (fyronjs)
   cli/                  the `fyron` binary (commands, generators)
   create-fyron-app/       `npm create fyron-app` scaffolder
 examples/
@@ -88,7 +88,7 @@ User-facing entry is `bootstrap/app.ts`:
 
 ```ts
 import 'reflect-metadata';
-import { Application } from 'fyron';
+import { Application } from 'fyronjs';
 
 export default async function createApp() {
   return new Application(import.meta.dirname)
@@ -107,7 +107,7 @@ export default async function createApp() {
 Laravel-style facade with groups, prefixes, named routes, and route model binding.
 
 ```ts
-import { Route, RequireAuth, type Request } from 'fyron';
+import { Route, RequireAuth, type Request } from 'fyronjs';
 import { PostController } from '../app/Http/Controllers/PostController.js';
 
 Route.get('/health', () => ({ ok: true }));
@@ -129,7 +129,7 @@ Per-route handlers can be either a closure (`(req, res) => ...`) or a `[Controll
 ### Service container & providers
 
 ```ts
-import { Container, ServiceProvider } from 'fyron';
+import { Container, ServiceProvider } from 'fyronjs';
 
 class CacheServiceProvider extends ServiceProvider {
   override register() {
@@ -160,7 +160,7 @@ export const usersTable = pgTable('users', {
 });
 
 // app/Models/User.ts
-import { Model } from 'fyron/database';
+import { Model } from 'fyronjs/database';
 import { usersTable } from '../../database/schema/users.js';
 import { Post } from './Post.js';
 
@@ -182,7 +182,7 @@ const xs = await User.query().where(eq(usersTable.active, true)).orderBy(usersTa
 
 ```ts
 import { z } from 'zod';
-import { Route, validate, FormRequest, type Request } from 'fyron';
+import { Route, validate, FormRequest, type Request } from 'fyronjs';
 
 // Inline middleware
 Route.post('/users',
@@ -210,7 +210,7 @@ Failures return `422 { message, errors: { field: [msg] } }` via `ValidationExcep
 `Auth` facade, `RequireAuth` injectable middleware, `AuthServiceProvider` (auto-registered, opt-in via `config.auth.enabled`). Better-auth's Drizzle adapter writes to `user`, `session`, `account`, `verification` tables (schema in `fyron/auth`).
 
 ```ts
-import { Route, RequireAuth, Auth, type Request } from 'fyron';
+import { Route, RequireAuth, Auth, type Request } from 'fyronjs';
 
 Route.get('/me', async (req: Request) => Auth.user(req)).middleware(RequireAuth);
 Route.get('/whoami', async (req: Request) => ({ user: await Auth.user(req) }));
@@ -232,7 +232,7 @@ Better-auth itself accepts plugin extensions (passkeys, OAuth providers, magic-l
 `Mail` facade with templated `Mailable` classes. Handlebars templates from `resources/mail/*.hbs`, or define inline via `source()`.
 
 ```ts
-import { Mailable, Mail } from 'fyron';
+import { Mailable, Mail } from 'fyronjs';
 
 class WelcomeMail extends Mailable<{ name: string; verifyUrl: string }> {
   override subject(p) { return `Welcome ${p.name}!`; }
@@ -264,7 +264,7 @@ auth: {
 
 ```ts
 // app/Console/Schedule.ts
-import { Schedule } from 'fyron';
+import { Schedule } from 'fyronjs';
 
 export default async function (app) {
   Schedule.everyFiveMinutes(() => CleanupTempFiles.run(),     { name: 'temp-cleanup' });
@@ -280,7 +280,7 @@ Helpers: `everyMinute / everyFiveMinutes / hourly / daily / dailyAt('HH:MM') / w
 ### File uploads — `@fastify/multipart`
 
 ```ts
-import { Route, Upload, type Request } from 'fyron';
+import { Route, Upload, type Request } from 'fyronjs';
 
 Route.post('/avatar', (req: Request) => {
   const f = req.file('avatar');           // RdxUploadedFile | undefined

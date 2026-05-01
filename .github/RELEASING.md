@@ -4,7 +4,7 @@ fyron publishes three packages from this monorepo:
 
 | Package          | npm                                                   |
 |------------------|-------------------------------------------------------|
-| `fyron`            | https://www.npmjs.com/package/fyron                     |
+| `fyronjs`          | https://www.npmjs.com/package/fyronjs                    |
 | `@fyron/cli`       | https://www.npmjs.com/package/@fyron/cli                |
 | `create-fyron-app` | https://www.npmjs.com/package/create-fyron-app          |
 
@@ -28,7 +28,7 @@ node -e "for (const f of ['packages/core', 'packages/cli', 'packages/create-fyro
   require('fs').writeFileSync(pkg, JSON.stringify(j, null, 2) + '\n');
 }"
 
-# 2. update create-fyron-app default fyronVersion / cliVersion if you want
+# 2. update create-fyron-app default fyronjsVersion / cliVersion if you want
 #    new scaffolds to default to the new version (optional)
 
 # 3. commit + tag + push

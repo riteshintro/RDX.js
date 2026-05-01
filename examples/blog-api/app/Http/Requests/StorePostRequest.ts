@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import { z } from 'zod';
-import { FormRequest } from 'fyron/validation';
+import { FormRequest } from 'fyronjs/validation';
 
 @injectable()
 export class StorePostRequest extends FormRequest {

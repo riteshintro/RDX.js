@@ -24,7 +24,7 @@ describe('makeMail', () => {
 
     const cls = await readFile(classPath, 'utf8');
     expect(cls).toContain('export class WelcomeMail extends Mailable');
-    expect(cls).toContain("from 'fyron/mail'");
+    expect(cls).toContain("from 'fyronjs/mail'");
     expect(cls).toContain("return 'welcome';");
 
     const tpl = await readFile(templatePath, 'utf8');

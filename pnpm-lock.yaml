@@ -32,7 +32,7 @@ importers:
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)
-      fyron:
+      fyronjs:
         specifier: workspace:*
         version: link:../../packages/core
       pg:
@@ -72,7 +72,7 @@ importers:
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)
-      fyron:
+      fyronjs:
         specifier: workspace:*
         version: link:../core
       handlebars:

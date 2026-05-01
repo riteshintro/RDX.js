@@ -1,5 +1,5 @@
 import { injectable } from 'tsyringe';
-import type { Request, Response } from 'fyron';
+import type { Request, Response } from 'fyronjs';
 import { Post } from '../../Models/Post.js';
 
 @injectable()

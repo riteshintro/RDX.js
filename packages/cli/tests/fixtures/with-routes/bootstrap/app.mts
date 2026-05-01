@@ -1,4 +1,4 @@
-import { Application, Route } from 'fyron';
+import { Application, Route } from 'fyronjs';
 
 export default async function () {
   return new Application(process.cwd())
