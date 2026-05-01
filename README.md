@@ -2,6 +2,12 @@
 
 A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** + **TypeScript ESM**.
 
+[![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
+[![npm rdx](https://img.shields.io/npm/v/rdx?label=rdx)](https://www.npmjs.com/package/rdx)
+[![npm @rdx/cli](https://img.shields.io/npm/v/@rdx/cli?label=%40rdx%2Fcli)](https://www.npmjs.com/package/@rdx/cli)
+[![npm create-rdx-app](https://img.shields.io/npm/v/create-rdx-app?label=create-rdx-app)](https://www.npmjs.com/package/create-rdx-app)
+[![license](https://img.shields.io/npm/l/rdx)](LICENSE)
+
 It gives Laravel's developer ergonomics (service container, providers, route facade, Active Record on top of an ORM, artisan-style CLI, scheduler, mail) without leaving the Node ecosystem. Targets JSON APIs.
 
 > **Status:** Phases 1–9, 11, 12 shipped. **70 tests** in framework, **15** in CLI, **4** in scaffolder. Auth (better-auth), scheduler (croner), mail (nodemailer + handlebars), and email-driven auth flows are wired and green.
@@ -15,7 +21,14 @@ npm create rdx-app@latest my-api
 cd my-api
 pnpm install
 cp .env.example .env       # set DATABASE_URL + BETTER_AUTH_SECRET
-pnpm rdx serve
+pnpm rdx serve             # → http://127.0.0.1:8000
+```
+
+## Install in an existing project
+
+```bash
+pnpm add rdx
+pnpm add -D @rdx/cli tsx drizzle-kit
 ```
 
 Generators:

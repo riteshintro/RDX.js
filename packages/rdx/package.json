@@ -2,6 +2,17 @@
   "name": "rdx",
   "version": "0.0.1",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
+  "license": "MIT",
+  "author": "riteshintro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riteshintro/RDX.js.git",
+    "directory": "packages/rdx"
+  },
+  "homepage": "https://github.com/riteshintro/RDX.js#readme",
+  "bugs": "https://github.com/riteshintro/RDX.js/issues",
+  "keywords": ["framework", "laravel", "fastify", "drizzle", "typescript", "rdx", "nodejs", "api"],
+  "engines": { "node": ">=20" },
   "type": "module",
   "main": "./dist/index.js",
   "module": "./dist/index.js",

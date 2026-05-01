@@ -2,6 +2,17 @@
   "name": "create-rdx-app",
   "version": "0.0.1",
   "description": "Scaffold a new rdx framework application",
+  "license": "MIT",
+  "author": "riteshintro",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/riteshintro/RDX.js.git",
+    "directory": "packages/create-rdx-app"
+  },
+  "homepage": "https://github.com/riteshintro/RDX.js#readme",
+  "bugs": "https://github.com/riteshintro/RDX.js/issues",
+  "keywords": ["rdx", "create-rdx-app", "scaffold", "starter", "fastify", "drizzle"],
+  "engines": { "node": ">=20" },
   "type": "module",
   "bin": {
     "create-rdx-app": "./dist/index.js"
