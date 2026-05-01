@@ -4,7 +4,7 @@ A Laravel-style framework for Node.js, built on **Fastify 5** + **Drizzle ORM** 
 
 [![ci](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml/badge.svg)](https://github.com/riteshintro/RDX.js/actions/workflows/ci.yml)
 [![npm avor](https://img.shields.io/npm/v/avor?label=avor)](https://www.npmjs.com/package/avor)
-[![npm @avor/cli](https://img.shields.io/npm/v/@avor/cli?label=%40avor%2Fcli)](https://www.npmjs.com/package/@avor/cli)
+[![npm avor-cli](https://img.shields.io/npm/v/avor-cli?label=avor-cli)](https://www.npmjs.com/package/avor-cli)
 [![npm create-avor-app](https://img.shields.io/npm/v/create-avor-app?label=create-avor-app)](https://www.npmjs.com/package/create-avor-app)
 [![license](https://img.shields.io/npm/l/avor)](LICENSE)
 
@@ -28,7 +28,7 @@ pnpm avor serve             # → http://127.0.0.1:8000
 
 ```bash
 pnpm add avor
-pnpm add -D @avor/cli tsx drizzle-kit
+pnpm add -D avor-cli tsx drizzle-kit
 ```
 
 Generators:

@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@avor/cli": "workspace:*",
+    "avor-cli": "workspace:*",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
     "avor": "workspace:*",

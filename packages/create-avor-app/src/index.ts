@@ -8,7 +8,7 @@ const cli = cac('create-avor-app');
 cli
   .command('[name]', 'Create a new avor application')
   .option('--avor-version <v>', 'avor version', { default: '^0.0.1' })
-  .option('--cli-version <v>', '@avor/cli version', { default: '^0.0.1' })
+  .option('--cli-version <v>', 'avor-cli version', { default: '^0.0.1' })
   .action(async (name: string | undefined, opts: { avorVersion?: string; cliVersion?: string }) => {
     const projectName = name ?? 'my-avor-app';
     const targetDir = resolve(process.cwd(), projectName);

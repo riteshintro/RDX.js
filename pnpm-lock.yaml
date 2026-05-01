@@ -26,12 +26,12 @@ importers:
 
   examples/blog-api:
     dependencies:
-      '@avor/cli':
-        specifier: workspace:*
-        version: link:../../packages/cli
       avor:
         specifier: workspace:*
         version: link:../../packages/avor
+      avor-cli:
+        specifier: workspace:*
+        version: link:../../packages/cli
       drizzle-orm:
         specifier: ^0.45.2
         version: 0.45.2(@electric-sql/pglite@0.2.17)(@types/pg@8.20.0)(kysely@0.28.16)(pg@8.20.0)

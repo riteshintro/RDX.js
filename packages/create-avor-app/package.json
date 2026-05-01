@@ -1,6 +1,6 @@
 {
   "name": "create-avor-app",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Scaffold a new avor framework application",
   "license": "MIT",
   "author": "riteshintro",
@@ -11,13 +11,25 @@
   },
   "homepage": "https://github.com/riteshintro/RDX.js#readme",
   "bugs": "https://github.com/riteshintro/RDX.js/issues",
-  "keywords": ["avor", "create-avor-app", "scaffold", "starter", "fastify", "drizzle"],
-  "engines": { "node": ">=20" },
+  "keywords": [
+    "avor",
+    "create-avor-app",
+    "scaffold",
+    "starter",
+    "fastify",
+    "drizzle"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
   "type": "module",
   "bin": {
     "create-avor-app": "./dist/index.js"
   },
-  "files": ["dist", "templates"],
+  "files": [
+    "dist",
+    "templates"
+  ],
   "scripts": {
     "build": "tsup",
     "typecheck": "tsc --noEmit",

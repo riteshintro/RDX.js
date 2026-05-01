@@ -5,14 +5,14 @@ avor publishes three packages from this monorepo:
 | Package          | npm                                                   |
 |------------------|-------------------------------------------------------|
 | `avor`            | https://www.npmjs.com/package/avor                     |
-| `@avor/cli`       | https://www.npmjs.com/package/@avor/cli                |
+| `avor-cli`       | https://www.npmjs.com/package/avor-cli                |
 | `create-avor-app` | https://www.npmjs.com/package/create-avor-app          |
 
 ## One-time setup
 
 1. Generate an **npm automation token** with publish access (https://www.npmjs.com/settings/<user>/tokens).
 2. Add as repo secret: GitHub → Settings → Secrets and variables → Actions → **New repository secret** named `NPM_TOKEN`.
-3. Confirm the three package names are owned by your npm account (or the `@avor` org for the scoped one).
+3. Confirm the three package names are owned by your npm account.
 
 ## Cutting a release
 
@@ -46,7 +46,7 @@ GitHub → Actions → **publish** → **Run workflow**. Tick **dry run** to see
 
 ## Workspace deps & versioning
 
-`@avor/cli` depends on `avor` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `avor` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
+`avor-cli` depends on `avor` via `workspace:*`. pnpm rewrites this to a real version range at publish time, so the published tarball depends on the matching `avor` version. **Bump all three packages together** so the workspace ranges resolve cleanly on the registry.
 
 ## Re-publishing the same version
 

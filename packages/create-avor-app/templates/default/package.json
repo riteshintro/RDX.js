@@ -4,15 +4,15 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "avor": "tsx node_modules/@avor/cli/dist/bin.js",
-    "dev": "tsx node_modules/@avor/cli/dist/bin.js serve",
+    "avor": "tsx node_modules/avor-cli/dist/bin.js",
+    "dev": "tsx node_modules/avor-cli/dist/bin.js serve",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
-    "migrate": "tsx node_modules/@avor/cli/dist/bin.js migrate",
-    "db:seed": "tsx node_modules/@avor/cli/dist/bin.js db:seed"
+    "migrate": "tsx node_modules/avor-cli/dist/bin.js migrate",
+    "db:seed": "tsx node_modules/avor-cli/dist/bin.js db:seed"
   },
   "dependencies": {
-    "@avor/cli": "__CLI_VERSION__",
+    "avor-cli": "__CLI_VERSION__",
     "drizzle-orm": "^0.45.2",
     "pg": "^8.13.1",
     "avor": "__RDX_VERSION__",
