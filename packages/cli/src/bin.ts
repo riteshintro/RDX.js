@@ -18,8 +18,8 @@ const cli = cac('rdx');
 
 cli
   .command('serve', 'Start the HTTP server')
-  .option('-p, --port <port>', 'Listen port', { default: 3000 })
-  .option('-h, --host <host>', 'Listen host', { default: '0.0.0.0' })
+  .option('-p, --port <port>', 'Listen port', { default: 8000 })
+  .option('-h, --host <host>', 'Listen host', { default: '127.0.0.1' })
   .action((opts) => serve(opts));
 
 cli.command('route:list', 'List registered routes').action(() => routeList());

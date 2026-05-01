@@ -11,7 +11,7 @@ export default async function createApp(): Promise<Application> {
     .withConfig({
       app: {
         name: 'blog-api',
-        port: Number(process.env.APP_PORT ?? 3000),
+        port: Number(process.env.APP_PORT ?? 8000),
       },
       database: {
         url: process.env.DATABASE_URL,
@@ -24,7 +24,7 @@ export default async function createApp(): Promise<Application> {
         },
         options: {
           secret: process.env.BETTER_AUTH_SECRET ?? 'change-me-in-production-32chars-min',
-          baseURL: process.env.BETTER_AUTH_URL ?? `http://localhost:${process.env.APP_PORT ?? 3000}`,
+          baseURL: process.env.BETTER_AUTH_URL ?? `http://localhost:${process.env.APP_PORT ?? 8000}`,
         },
       },
       mail: {

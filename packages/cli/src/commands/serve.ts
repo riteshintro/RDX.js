@@ -14,7 +14,7 @@ export async function serve(opts: ServeOpts = {}): Promise<void> {
   const server = await app.listen(port, opts.host);
   const addr = server.address();
   const actualPort = typeof addr === 'object' && addr ? addr.port : port;
-  console.log(pc.green(`✓ rdx server ready at http://${opts.host ?? '0.0.0.0'}:${actualPort}`));
+  console.log(pc.green(`✓ rdx server ready at http://${opts.host ?? '127.0.0.1'}:${actualPort}`));
 
   const stop = async () => {
     console.log(pc.dim('\nShutting down...'));

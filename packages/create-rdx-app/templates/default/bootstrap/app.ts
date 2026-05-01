@@ -12,8 +12,8 @@ export default async function createApp(): Promise<Application> {
       app: {
         name: '__APP_NAME__',
         env: process.env.APP_ENV ?? 'local',
-        port: Number(process.env.APP_PORT ?? 3000),
-        host: process.env.APP_HOST ?? '0.0.0.0',
+        port: Number(process.env.APP_PORT ?? 8000),
+        host: process.env.APP_HOST ?? '127.0.0.1',
         url: process.env.APP_URL,
       },
       database: {

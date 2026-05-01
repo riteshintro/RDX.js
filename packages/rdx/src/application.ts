@@ -177,8 +177,8 @@ export class Application {
   async listen(port?: number, host?: string): Promise<Server> {
     if (!this.booted) await this.boot();
     const cfg = this.config();
-    const p = port ?? cfg.get<number>('app.port', 3000);
-    const h = host ?? cfg.get<string>('app.host', '0.0.0.0');
+    const p = port ?? cfg.get<number>('app.port', 8000);
+    const h = host ?? cfg.get<string>('app.host', '127.0.0.1');
     return this.httpKernel().listen(p, h);
   }
 
