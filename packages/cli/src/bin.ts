@@ -64,13 +64,9 @@ cli
   .option('--force', 'Overwrite if exists')
   .action((name: string, opts: { force?: boolean }) => makeMail(name, { force: opts.force }));
 
-cli
-  .command('schedule:run', 'Start the cron scheduler')
-  .action(() => scheduleRun());
+cli.command('schedule:run', 'Start the cron scheduler').action(() => scheduleRun());
 
-cli
-  .command('schedule:list', 'List registered scheduled tasks')
-  .action(() => scheduleList());
+cli.command('schedule:list', 'List registered scheduled tasks').action(() => scheduleList());
 
 cli.help();
 cli.version('0.0.1');

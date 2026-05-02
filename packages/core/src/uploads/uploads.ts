@@ -110,7 +110,11 @@ export function uploadSingle(field: string, opts: UploadOptions = {}): preHandle
   };
 }
 
-export function uploadArray(field: string, maxCount = DEFAULT_MAX_FILES, opts: UploadOptions = {}): preHandlerAsyncHookHandler {
+export function uploadArray(
+  field: string,
+  maxCount = DEFAULT_MAX_FILES,
+  opts: UploadOptions = {},
+): preHandlerAsyncHookHandler {
   return async (req) => {
     const { files, body } = await consumeMultipart(req, { ...opts, maxFiles: maxCount });
     const matching = files.filter((f) => f.fieldname === field);

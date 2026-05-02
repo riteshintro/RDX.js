@@ -21,7 +21,7 @@ export function snakeCase(s: string): string {
 }
 
 export function pluralize(s: string): string {
-  if (/(s|x|z|ch|sh)$/i.test(s)) return s + 'es';
-  if (/[^aeiou]y$/i.test(s)) return s.slice(0, -1) + 'ies';
-  return s + 's';
+  if (/(s|x|z|ch|sh)$/i.test(s)) return `${s}es`;
+  if (/[^aeiou]y$/i.test(s)) return `${s.slice(0, -1)}ies`;
+  return `${s}s`;
 }

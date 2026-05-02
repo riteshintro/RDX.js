@@ -26,18 +26,26 @@ const profilesTable = pgTable('profiles', {
 
 class User extends Model {
   static override table = usersTable;
-  posts() { return this.hasMany(Post, 'user_id'); }
-  profile() { return this.hasOne(Profile, 'user_id'); }
+  posts() {
+    return this.hasMany(Post, 'user_id');
+  }
+  profile() {
+    return this.hasOne(Profile, 'user_id');
+  }
 }
 
 class Post extends Model {
   static override table = postsTable;
-  user() { return this.belongsTo(User, 'user_id'); }
+  user() {
+    return this.belongsTo(User, 'user_id');
+  }
 }
 
 class Profile extends Model {
   static override table = profilesTable;
-  user() { return this.belongsTo(User, 'user_id'); }
+  user() {
+    return this.belongsTo(User, 'user_id');
+  }
 }
 
 async function freshApp(): Promise<Application> {
@@ -51,16 +59,16 @@ async function freshApp(): Promise<Application> {
 
   const a = new Application(process.cwd())
     .withConfig({ logging: { level: 'silent' } })
-    .withoutBuiltIn(((await import('../providers/database-service-provider.js')).DatabaseServiceProvider));
+    .withoutBuiltIn((await import('../providers/database-service-provider.js')).DatabaseServiceProvider);
   await a.boot();
   a.container.instance('db', db as unknown as object);
   return a;
 }
 
-let app: Application;
+let _app: Application;
 
 beforeEach(async () => {
-  app = await freshApp();
+  _app = await freshApp();
 });
 
 describe('Model — basic CRUD', () => {
@@ -77,7 +85,7 @@ describe('Model — basic CRUD', () => {
     const a = await User.create({ name: 'Alice' });
     const found = await User.find(a.id);
     expect(found).not.toBeNull();
-    expect(found!.name).toBe('Alice');
+    expect(found?.name).toBe('Alice');
   });
 
   it('returns null when find misses', async () => {

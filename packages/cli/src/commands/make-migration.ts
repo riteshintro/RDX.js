@@ -15,5 +15,5 @@ export async function makeMigration(name: string, opts: MakeOpts = {}): Promise<
     child.on('exit', (code) => (code === 0 ? res() : rej(new Error(`drizzle-kit exited with code ${code}`))));
     child.on('error', rej);
   });
-  console.log(pc.green(`✓ Migration generated`));
+  console.log(pc.green('✓ Migration generated'));
 }

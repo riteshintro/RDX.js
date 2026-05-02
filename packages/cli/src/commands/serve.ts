@@ -18,7 +18,11 @@ export async function serve(opts: ServeOpts = {}): Promise<void> {
 
   const stop = async () => {
     console.log(pc.dim('\nShutting down...'));
-    try { await app.shutdown(); } catch { /* ignore */ }
+    try {
+      await app.shutdown();
+    } catch {
+      /* ignore */
+    }
     process.exit(0);
   };
   process.on('SIGINT', stop);

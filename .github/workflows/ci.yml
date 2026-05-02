@@ -35,4 +35,4 @@ jobs:
         run: pnpm rebuild esbuild @swc/core @biomejs/biome
 
       - name: Build, typecheck, lint, test
-        run: turbo build typecheck lint test --filter='!@fyron/docs' --filter='!blog-api'
+        run: pnpm exec turbo build typecheck lint test --filter='!@fyron/docs' --filter='!blog-api'

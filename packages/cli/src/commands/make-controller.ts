@@ -21,7 +21,7 @@ export interface MakeOpts {
 
 export async function makeController(name: string, opts: MakeOpts = {}): Promise<string> {
   const cwd = opts.cwd ?? process.cwd();
-  const className = pascalCase(name).replace(/Controller$/, '') + 'Controller';
+  const className = `${pascalCase(name).replace(/Controller$/, '')}Controller`;
   const target = resolve(cwd, 'app/Http/Controllers', `${className}.ts`);
 
   if (existsSync(target) && !opts.force) {

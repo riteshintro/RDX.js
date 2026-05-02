@@ -34,7 +34,7 @@ describe('scaffold', () => {
       const full = join(target, path);
       const s = await stat(full).catch(() => null);
       expect(s, `expected ${path} to exist`).not.toBeNull();
-      expect(s!.isFile()).toBe(true);
+      expect(s?.isFile()).toBe(true);
     }
   });
 

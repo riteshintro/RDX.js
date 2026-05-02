@@ -2,9 +2,7 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 import type { Logger } from '../logging/logger.js';
 import { HttpException, ValidationException } from '../exceptions/http-exception.js';
 
-export interface ExceptionRenderer {
-  (err: unknown): { status: number; body: unknown; headers?: Record<string, string> };
-}
+export type ExceptionRenderer = (err: unknown) => { status: number; body: unknown; headers?: Record<string, string> };
 
 export const defaultRenderer: ExceptionRenderer = (err) => {
   if (err instanceof ValidationException) {
@@ -27,9 +25,10 @@ export const defaultRenderer: ExceptionRenderer = (err) => {
   }
   return {
     status: 500,
-    body: process.env.NODE_ENV === 'production'
-      ? { message: 'Internal Server Error' }
-      : { message: e.message ?? 'Internal Server Error', stack: e.stack },
+    body:
+      process.env.NODE_ENV === 'production'
+        ? { message: 'Internal Server Error' }
+        : { message: e.message ?? 'Internal Server Error', stack: e.stack },
   };
 };
 

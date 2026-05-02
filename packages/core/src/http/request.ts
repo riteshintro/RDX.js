@@ -3,17 +3,29 @@ import type { FastifyRequest } from 'fastify';
 export class Request {
   constructor(public readonly raw: FastifyRequest) {}
 
-  get method(): string { return this.raw.method; }
+  get method(): string {
+    return this.raw.method;
+  }
   get path(): string {
     const u = this.raw.url ?? '';
     const q = u.indexOf('?');
     return q === -1 ? u : u.slice(0, q);
   }
-  get url(): string { return this.raw.url ?? ''; }
-  get query(): Record<string, unknown> { return this.raw.query as Record<string, unknown>; }
-  get params(): Record<string, string> { return this.raw.params as Record<string, string>; }
-  get body(): unknown { return this.raw.body; }
-  get headers(): NodeJS.Dict<string | string[]> { return this.raw.headers; }
+  get url(): string {
+    return this.raw.url ?? '';
+  }
+  get query(): Record<string, unknown> {
+    return this.raw.query as Record<string, unknown>;
+  }
+  get params(): Record<string, string> {
+    return this.raw.params as Record<string, string>;
+  }
+  get body(): unknown {
+    return this.raw.body;
+  }
+  get headers(): NodeJS.Dict<string | string[]> {
+    return this.raw.headers;
+  }
 
   input<T = unknown>(key: string, defaultValue?: T): T {
     const body = this.raw.body as Record<string, unknown> | undefined;
@@ -26,7 +38,7 @@ export class Request {
   }
 
   all(): Record<string, unknown> {
-    const body = (this.raw.body && typeof this.raw.body === 'object') ? this.raw.body : {};
+    const body = this.raw.body && typeof this.raw.body === 'object' ? this.raw.body : {};
     return {
       ...(this.raw.query as object),
       ...(this.raw.params as object),
@@ -64,7 +76,9 @@ export class Request {
     return m?.[1];
   }
 
-  ip(): string | undefined { return this.raw.ip; }
+  ip(): string | undefined {
+    return this.raw.ip;
+  }
 
   isJson(): boolean {
     return /application\/json/i.test(this.header('content-type') || '');
@@ -84,7 +98,7 @@ export class Request {
 
   bound<T = unknown>(name: string): T {
     const b = (this.raw as unknown as { _bindings?: Record<string, unknown> })._bindings;
-    return (b?.[name]) as T;
+    return b?.[name] as T;
   }
 
   user<T = unknown>(): T | null {

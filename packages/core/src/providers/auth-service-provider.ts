@@ -30,9 +30,10 @@ export class AuthServiceProvider extends ServiceProvider {
           ...(extra.emailVerification ?? {}),
           sendOnSignUp: mailCfg.sendOnSignUp ?? false,
           autoSignInAfterVerification: extra.emailVerification?.autoSignInAfterVerification ?? true,
-          sendVerificationEmail: async (
-            { user, url }: { user: { email: string; name?: string | null }; url: string },
-          ) => {
+          sendVerificationEmail: async ({
+            user,
+            url,
+          }: { user: { email: string; name?: string | null }; url: string }) => {
             await mailer.send(VerifyEmailMail, user.email, {
               name: user.name,
               email: user.email,
@@ -47,9 +48,7 @@ export class AuthServiceProvider extends ServiceProvider {
           enabled: extra.emailAndPassword?.enabled ?? true,
           requireEmailVerification:
             mailCfg.requireVerification ?? extra.emailAndPassword?.requireEmailVerification ?? false,
-          sendResetPassword: async (
-            { user, url }: { user: { email: string; name?: string | null }; url: string },
-          ) => {
+          sendResetPassword: async ({ user, url }: { user: { email: string; name?: string | null }; url: string }) => {
             await mailer.send(ResetPasswordMail, user.email, {
               name: user.name,
               email: user.email,
@@ -79,7 +78,7 @@ export class AuthServiceProvider extends ServiceProvider {
 
     this.app.httpKernel().fastify.addHook('onRequest', async (req, reply) => {
       const url = req.url ?? '';
-      if (url === prefix || url.startsWith(prefix + '/') || url.startsWith(prefix + '?')) {
+      if (url === prefix || url.startsWith(`${prefix}/`) || url.startsWith(`${prefix}?`)) {
         reply.hijack();
         await handler(req.raw, reply.raw);
       }

@@ -40,7 +40,8 @@ export async function makeAuth(opts: MakeAuthOpts = {}): Promise<void> {
   }
 
   console.log(pc.bold('\nNext steps:'));
-  console.log(pc.dim(`
+  console.log(
+    pc.dim(`
   1. Add to bootstrap/app.ts withConfig:
      auth: {
        enabled: true,
@@ -58,5 +59,6 @@ export async function makeAuth(opts: MakeAuthOpts = {}): Promise<void> {
 
   5. Sign-up endpoint:    POST /api/auth/sign-up/email
      body: { name, email, password }
-`));
+`),
+  );
 }

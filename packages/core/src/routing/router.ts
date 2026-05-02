@@ -86,7 +86,7 @@ export class RouteBuilder {
 
 function joinPath(a: string | undefined, b: string): string {
   const left = (a ?? '').replace(/\/+$/, '');
-  const right = b.startsWith('/') ? b : '/' + b;
+  const right = b.startsWith('/') ? b : `/${b}`;
   const out = left + right;
   return out || '/';
 }

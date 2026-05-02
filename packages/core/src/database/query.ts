@@ -30,7 +30,11 @@ export class QueryBuilder<M extends typeof Model> {
   }
 
   async get(): Promise<InstanceType<M>[]> {
-    const m = this.model as unknown as { db: () => any; table: any; hydrate: (r: Record<string, unknown>) => InstanceType<M> };
+    const m = this.model as unknown as {
+      db: () => any;
+      table: any;
+      hydrate: (r: Record<string, unknown>) => InstanceType<M>;
+    };
     let q = m.db().select().from(m.table);
     if (this.conditions.length) q = q.where(and(...this.conditions));
     if (this.orders.length) q = q.orderBy(...this.orders);

@@ -12,9 +12,9 @@ import { DatabaseServiceProvider } from './providers/database-service-provider.j
 import { AuthServiceProvider } from './providers/auth-service-provider.js';
 import { SchedulerServiceProvider } from './providers/scheduler-service-provider.js';
 import { MailServiceProvider } from './providers/mail-service-provider.js';
-import { HttpKernel } from './http/kernel.js';
-import { Router } from './routing/router.js';
-import { RouteCompiler } from './routing/compiler.js';
+import type { HttpKernel } from './http/kernel.js';
+import type { Router } from './routing/router.js';
+import type { RouteCompiler } from './routing/compiler.js';
 import type { MiddlewareLike } from './http/middleware.js';
 import type { RdxAuthInstance } from './auth/auth-config.js';
 import type { Scheduler } from './scheduler/scheduler.js';
@@ -49,7 +49,9 @@ export class Application {
     this.basePath = basePath;
     this.container = new Container();
     if (currentApp && currentApp !== this) {
-      console.warn('[fyron] Warning: new Application instance overwrites previous. Call Application.reset() between tests.');
+      console.warn(
+        '[fyron] Warning: new Application instance overwrites previous. Call Application.reset() between tests.',
+      );
     }
     currentApp = this;
   }
@@ -243,7 +245,11 @@ export class Application {
       this.scheduler().stop();
     }
     for (const fn of this.shutdownHooks.reverse()) {
-      try { await fn(); } catch (e) { this.logger().warn({ err: e }, 'shutdown hook failed'); }
+      try {
+        await fn();
+      } catch (e) {
+        this.logger().warn({ err: e }, 'shutdown hook failed');
+      }
     }
     if (this.container.has('httpKernel')) {
       await this.httpKernel().close();

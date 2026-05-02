@@ -1,5 +1,5 @@
 import { Application } from '../application.js';
-import { ConfigRepository } from '../config/repository.js';
+import type { ConfigRepository } from '../config/repository.js';
 import type { Logger } from '../logging/logger.js';
 
 export function app(): Application {

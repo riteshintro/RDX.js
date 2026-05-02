@@ -20,9 +20,7 @@ export async function loadApp(cwd: string = process.cwd()): Promise<Application>
     }
 
     const m = mod as { default?: unknown; createApp?: unknown; bootstrap?: unknown };
-    const factory = (m.default ?? m.createApp ?? m.bootstrap) as
-      | (() => Application | Promise<Application>)
-      | undefined;
+    const factory = (m.default ?? m.createApp ?? m.bootstrap) as (() => Application | Promise<Application>) | undefined;
 
     if (typeof factory !== 'function') {
       throw new Error(`${c} must export a function (default, createApp, or bootstrap) returning an Application`);

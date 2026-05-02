@@ -4,7 +4,10 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { Application, Mail, Mailable } from '../index.js';
 
-interface WelcomePayload { name: string; verifyUrl: string }
+interface WelcomePayload {
+  name: string;
+  verifyUrl: string;
+}
 
 class WelcomeMail extends Mailable<WelcomePayload> {
   override subject(p: WelcomePayload): string {
@@ -22,8 +25,12 @@ class WelcomeMail extends Mailable<WelcomePayload> {
 }
 
 class HtmlEscapeMail extends Mailable<{ note: string }> {
-  override subject(): string { return 'note'; }
-  override template(): string { return 'escape'; }
+  override subject(): string {
+    return 'note';
+  }
+  override template(): string {
+    return 'escape';
+  }
   override async data(p: { note: string }): Promise<Record<string, unknown>> {
     return { note: p.note };
   }
@@ -40,11 +47,7 @@ beforeEach(async () => {
     `<h1>Hello {{name}}</h1>\n<p>Verify at <a href="{{link}}">{{link}}</a></p>`,
     'utf8',
   );
-  await writeFile(
-    join(dir, 'resources/mail/escape.hbs'),
-    `<p>{{note}}</p>`,
-    'utf8',
-  );
+  await writeFile(join(dir, 'resources/mail/escape.hbs'), '<p>{{note}}</p>', 'utf8');
 
   app = new Application(dir).withConfig({
     logging: { level: 'silent' },
@@ -85,7 +88,7 @@ describe('Mail', () => {
   it('Mail.to(addr).send() works as a fluent helper', async () => {
     await Mail.to(['a@x.com', 'b@x.com']).send(WelcomeMail, { name: 'Pair', verifyUrl: '#' });
     expect(app.mailer().sentMessages).toHaveLength(1);
-    expect(app.mailer().sentMessages[0]!.message.to).toEqual(['a@x.com', 'b@x.com']);
+    expect(app.mailer().sentMessages[0]?.message.to).toEqual(['a@x.com', 'b@x.com']);
   });
 
   it('Mailable.from() falls back to default from when not overridden', async () => {
@@ -101,9 +104,15 @@ describe('Mail', () => {
 
   it('throws if template file missing', async () => {
     class MissingTplMail extends Mailable {
-      override subject(): string { return 'x'; }
-      override template(): string { return 'does-not-exist'; }
-      override async data(): Promise<Record<string, unknown>> { return {}; }
+      override subject(): string {
+        return 'x';
+      }
+      override template(): string {
+        return 'does-not-exist';
+      }
+      override async data(): Promise<Record<string, unknown>> {
+        return {};
+      }
     }
     await expect(Mail.send(MissingTplMail, 'a@b.c', {})).rejects.toThrow(/template not found/);
   });

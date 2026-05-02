@@ -22,9 +22,7 @@ export async function routeList(opts: RouteListOpts = {}): Promise<void> {
   console.log(pc.dim('-'.repeat(wMethod + wPath + 30)));
 
   for (const r of router.routes) {
-    const handler = Array.isArray(r.handler)
-      ? `${r.handler[0].name}@${r.handler[1]}`
-      : 'closure';
+    const handler = Array.isArray(r.handler) ? `${r.handler[0].name}@${r.handler[1]}` : 'closure';
     const name = r.name ? pc.dim(` (${r.name})`) : '';
     console.log(`${pc.cyan(r.method.padEnd(wMethod))}  ${r.path.padEnd(wPath)}  ${handler}${name}`);
   }

@@ -14,12 +14,20 @@ describe('Application', () => {
     const order: string[] = [];
 
     class P1 extends ServiceProvider {
-      override register() { order.push('P1.register'); }
-      override async boot() { order.push('P1.boot'); }
+      override register() {
+        order.push('P1.register');
+      }
+      override async boot() {
+        order.push('P1.boot');
+      }
     }
     class P2 extends ServiceProvider {
-      override register() { order.push('P2.register'); }
-      override async boot() { order.push('P2.boot'); }
+      override register() {
+        order.push('P2.register');
+      }
+      override async boot() {
+        order.push('P2.boot');
+      }
     }
 
     const a = new Application(process.cwd()).withProviders([P1, P2]);

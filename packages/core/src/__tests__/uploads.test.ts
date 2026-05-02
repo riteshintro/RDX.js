@@ -1,17 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import request from 'supertest';
 import { Buffer } from 'node:buffer';
-import {
-  Application,
-  Route,
-  Upload,
-  type Request as RdxRequest,
-} from '../index.js';
+import { Application, Route, Upload, type Request as RdxRequest } from '../index.js';
 
 async function bootApp(register: () => void): Promise<Application> {
-  const a = new Application(process.cwd())
-    .withConfig({ logging: { level: 'silent' } })
-    .loadRoutesFrom(register);
+  const a = new Application(process.cwd()).withConfig({ logging: { level: 'silent' } }).loadRoutesFrom(register);
   await a.boot();
   await a.httpKernel().ready();
   return a;
@@ -117,14 +110,10 @@ describe('Upload.fields', () => {
 describe('Upload size limits', () => {
   it('rejects files exceeding the configured limit', async () => {
     const app = await bootApp(() => {
-      Route.post('/tiny', () => ({ ok: true })).middleware(
-        Upload.single('file', { maxFileSize: 100 }),
-      );
+      Route.post('/tiny', () => ({ ok: true })).middleware(Upload.single('file', { maxFileSize: 100 }));
     });
     const big = Buffer.alloc(1024, 'x');
-    const res = await request(app.httpKernel().fastify.server)
-      .post('/tiny')
-      .attach('file', big, 'big.bin');
+    const res = await request(app.httpKernel().fastify.server).post('/tiny').attach('file', big, 'big.bin');
     expect(res.status).toBeGreaterThanOrEqual(400);
   });
 });

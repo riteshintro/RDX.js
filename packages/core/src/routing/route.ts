@@ -1,5 +1,5 @@
 import { Application } from '../application.js';
-import { Router, type RouteBuilder, type Binder } from './router.js';
+import type { Router, RouteBuilder, Binder } from './router.js';
 import type { GroupAttributes, RouteHandler } from './route-definition.js';
 
 function router(): Router {
@@ -16,5 +16,7 @@ export const Route = {
   head: (path: string, handler: RouteHandler): RouteBuilder => router().add('HEAD', path, handler),
   group: (attrs: GroupAttributes, fn: () => void): void => router().group(attrs, fn),
   url: (name: string, params: Record<string, string | number> = {}): string => router().url(name, params),
-  bind: (name: string, resolver: Binder): void => { router().bind(name, resolver); },
+  bind: (name: string, resolver: Binder): void => {
+    router().bind(name, resolver);
+  },
 } as const;

@@ -28,7 +28,11 @@ export abstract class Model {
   static async find<M extends typeof Model>(this: M, id: number | string): Promise<InstanceType<M> | null> {
     const t = this.table as unknown as Record<string, unknown>;
     const col = t[this.primaryKey];
-    const rows = await (this.db().select() as { from: (t: AnyTable) => { where: (c: unknown) => { limit: (n: number) => Promise<unknown[]> } } })
+    const rows = await (
+      this.db().select() as {
+        from: (t: AnyTable) => { where: (c: unknown) => { limit: (n: number) => Promise<unknown[]> } };
+      }
+    )
       .from(this.table)
       .where(eq(col as never, id as never))
       .limit(1);
@@ -49,7 +53,7 @@ export abstract class Model {
 
   static async create<M extends typeof Model>(this: M, data: Record<string, unknown>): Promise<InstanceType<M>> {
     const rows = await this.db().insert(this.table).values(data).returning();
-    return this.hydrate((rows as Record<string, unknown>[])[0]!);
+    return this.hydrate((rows as Record<string, unknown>[])[0] as Record<string, unknown>);
   }
 
   static query<M extends typeof Model>(this: M): QueryBuilder<M> {
@@ -74,7 +78,11 @@ export abstract class Model {
       const rows = await ctor.db().insert(ctor.table).values(attrs).returning();
       Object.assign(this, (rows as Record<string, unknown>[])[0]);
     } else {
-      await ctor.db().update(ctor.table).set(attrs).where(eq(t[pk] as never, id as never));
+      await ctor
+        .db()
+        .update(ctor.table)
+        .set(attrs)
+        .where(eq(t[pk] as never, id as never));
     }
     return this;
   }
@@ -85,7 +93,10 @@ export abstract class Model {
     const pk = ctor.primaryKey;
     const id = this[pk];
     if (id === undefined || id === null) throw new Error('Cannot delete unsaved model');
-    await ctor.db().delete(ctor.table).where(eq(t[pk] as never, id as never));
+    await ctor
+      .db()
+      .delete(ctor.table)
+      .where(eq(t[pk] as never, id as never));
   }
 
   hasMany<R extends typeof Model>(related: R, foreignKey: string, localKey?: string): HasMany<R> {

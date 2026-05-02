@@ -52,7 +52,7 @@ export function toFastifyHandler(
   }
 
   if (typeof mw === 'function') {
-    const fn = mw as ((req: FastifyRequest, reply: FastifyReply, next?: Next) => unknown | Promise<unknown>);
+    const fn = mw as (req: FastifyRequest, reply: FastifyReply, next?: Next) => unknown | Promise<unknown>;
     return async (req, reply) => {
       const arity = fn.length;
       if (arity >= 3) {
@@ -77,7 +77,9 @@ async function runWithNextStyle(call: (next: Next) => unknown | Promise<unknown>
     nextResolve = resolve;
     nextReject = reject;
   });
-  nextPromise.catch(() => { /* observed via nextErr */ });
+  nextPromise.catch(() => {
+    /* observed via nextErr */
+  });
   const next: Next = (err?: unknown) => {
     if (nextCalled) return;
     nextCalled = true;
@@ -90,11 +92,7 @@ async function runWithNextStyle(call: (next: Next) => unknown | Promise<unknown>
   };
   const result = call(next);
   if (result instanceof Promise) {
-    try {
-      await result;
-    } catch (e) {
-      throw e;
-    }
+    await result;
     if (!nextCalled) return;
     if (nextErr) throw nextErr;
     return;

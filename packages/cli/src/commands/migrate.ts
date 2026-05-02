@@ -28,7 +28,9 @@ export async function migrate(opts: MigrateOpts = {}): Promise<void> {
   await app.shutdown();
 }
 
-async function loadMigrator(driver: string): Promise<{ migrate: (db: unknown, opts: { migrationsFolder: string }) => Promise<void> }> {
+async function loadMigrator(
+  driver: string,
+): Promise<{ migrate: (db: unknown, opts: { migrationsFolder: string }) => Promise<void> }> {
   switch (driver) {
     case 'pg':
     case 'node-postgres':

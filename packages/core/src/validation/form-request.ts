@@ -7,7 +7,9 @@ import { zodErrorsToMap } from './zod-validator.js';
 
 export abstract class FormRequest implements Middleware {
   abstract rules(req: Request): ZodSchema;
-  authorize(_req: Request): boolean { return true; }
+  authorize(_req: Request): boolean {
+    return true;
+  }
 
   handle(req: Request, _res: Response, next: Next): void {
     if (!this.authorize(req)) {

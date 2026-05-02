@@ -1,6 +1,14 @@
 import { describe, it, expect } from 'vitest';
 import request from 'supertest';
-import { Application, HttpKernel, NotFoundException, BadRequestException, defineMiddleware, Route, Request as RdxRequest } from '../index.js';
+import {
+  Application,
+  type HttpKernel,
+  NotFoundException,
+  BadRequestException,
+  defineMiddleware,
+  Route,
+  type Request as RdxRequest,
+} from '../index.js';
 
 interface SetupArgs {
   app: Application;
@@ -10,17 +18,21 @@ interface SetupArgs {
 
 async function makeApp(setup?: (args: SetupArgs) => void): Promise<{ app: Application; kernel: HttpKernel }> {
   let routesRegister: (() => void) | null = null;
-  const a = new Application(process.cwd()).withConfig({
-    logging: { level: 'silent' },
-  }).loadRoutesFrom(() => {
-    if (routesRegister) routesRegister();
-  });
+  const a = new Application(process.cwd())
+    .withConfig({
+      logging: { level: 'silent' },
+    })
+    .loadRoutesFrom(() => {
+      if (routesRegister) routesRegister();
+    });
 
   if (setup) {
     setup({
       app: a,
       kernel: undefined as unknown as HttpKernel,
-      registerRoutes: (fn) => { routesRegister = fn; },
+      registerRoutes: (fn) => {
+        routesRegister = fn;
+      },
     });
   }
 
@@ -50,10 +62,12 @@ describe('HttpKernel', () => {
   it('runs global middleware before route handlers', async () => {
     const log: string[] = [];
     const { kernel } = await makeApp(({ app, registerRoutes }) => {
-      app.use(defineMiddleware((_req, _res, next) => {
-        log.push('mw');
-        next();
-      }));
+      app.use(
+        defineMiddleware((_req, _res, next) => {
+          log.push('mw');
+          next();
+        }),
+      );
       registerRoutes(() => {
         Route.get('/ping', () => {
           log.push('route');
@@ -70,8 +84,12 @@ describe('HttpKernel', () => {
   it('renders HttpException with proper status and body', async () => {
     const { kernel } = await makeApp(({ registerRoutes }) => {
       registerRoutes(() => {
-        Route.get('/bad', () => { throw new BadRequestException('nope'); });
-        Route.get('/missing', () => { throw new NotFoundException('gone'); });
+        Route.get('/bad', () => {
+          throw new BadRequestException('nope');
+        });
+        Route.get('/missing', () => {
+          throw new NotFoundException('gone');
+        });
       });
     });
     const a = await request(kernel.fastify.server).get('/bad');
@@ -86,7 +104,9 @@ describe('HttpKernel', () => {
   it('catches async errors and renders 500 in dev', async () => {
     const { kernel } = await makeApp(({ registerRoutes }) => {
       registerRoutes(() => {
-        Route.get('/boom', async () => { throw new Error('kaboom'); });
+        Route.get('/boom', async () => {
+          throw new Error('kaboom');
+        });
       });
     });
     const res = await request(kernel.fastify.server).get('/boom');

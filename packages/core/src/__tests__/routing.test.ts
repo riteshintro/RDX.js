@@ -1,12 +1,10 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { injectable, inject } from 'tsyringe';
 import request from 'supertest';
-import { Application, Route, Router, Request, Response, defineMiddleware } from '../index.js';
+import { Application, Route, Router, Request, defineMiddleware } from '../index.js';
 
 async function bootApp(register: () => void): Promise<Application> {
-  const a = new Application(process.cwd())
-    .withConfig({ logging: { level: 'silent' } })
-    .loadRoutesFrom(register);
+  const a = new Application(process.cwd()).withConfig({ logging: { level: 'silent' } }).loadRoutesFrom(register);
   await a.boot();
   await a.httpKernel().ready();
   return a;
@@ -29,9 +27,7 @@ describe('Routing — function handlers', () => {
         all: req.all(),
       }));
     });
-    const res = await request(a.httpKernel().fastify.server)
-      .post('/echo')
-      .send({ name: 'Bob', x: 1 });
+    const res = await request(a.httpKernel().fastify.server).post('/echo').send({ name: 'Bob', x: 1 });
     expect(res.status).toBe(200);
     expect(res.body.name).toBe('Bob');
     expect(res.body.all).toMatchObject({ name: 'Bob', x: 1 });
@@ -51,8 +47,12 @@ describe('Routing — controller actions', () => {
   it('resolves a class controller from container per request', async () => {
     @injectable()
     class UserController {
-      index() { return { list: ['a', 'b'] }; }
-      show(req: Request) { return { user: req.params.id }; }
+      index() {
+        return { list: ['a', 'b'] };
+      }
+      show(req: Request) {
+        return { user: req.params.id };
+      }
     }
 
     const a = await bootApp(() => {
@@ -71,7 +71,9 @@ describe('Routing — controller actions', () => {
     @injectable()
     class WhoamiController {
       constructor(@inject(Request) public req: Request) {}
-      handle() { return { path: this.req.path, method: this.req.method }; }
+      handle() {
+        return { path: this.req.path, method: this.req.method };
+      }
     }
 
     const a = await bootApp(() => {
@@ -120,7 +122,7 @@ describe('Routing — groups', () => {
     expect(Route.url('admin.users.show', { id: 99 })).toBe('/admin/users/99');
     const router = a.container.resolve(Router);
     expect(router.routes).toHaveLength(1);
-    expect(router.routes[0]!.name).toBe('admin.users.show');
+    expect(router.routes[0]?.name).toBe('admin.users.show');
   });
 });
 

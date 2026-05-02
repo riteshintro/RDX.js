@@ -1,19 +1,10 @@
 import { describe, it, expect } from 'vitest';
 import { z } from 'zod';
 import request from 'supertest';
-import {
-  Application,
-  Route,
-  Request,
-  Response,
-  validate,
-  FormRequest,
-} from '../index.js';
+import { Application, Route, type Request, validate, FormRequest } from '../index.js';
 
 async function bootApp(register: () => void): Promise<Application> {
-  const a = new Application(process.cwd())
-    .withConfig({ logging: { level: 'silent' } })
-    .loadRoutesFrom(register);
+  const a = new Application(process.cwd()).withConfig({ logging: { level: 'silent' } }).loadRoutesFrom(register);
   await a.boot();
   await a.httpKernel().ready();
   return a;
@@ -23,12 +14,9 @@ describe('validate() middleware', () => {
   it('accepts valid input and exposes via req.validated()', async () => {
     const schema = z.object({ name: z.string().min(2), age: z.number().int().min(0) });
     const app = await bootApp(() => {
-      Route.post('/users', (req: Request) => req.validated())
-        .middleware(validate(schema));
+      Route.post('/users', (req: Request) => req.validated()).middleware(validate(schema));
     });
-    const res = await request(app.httpKernel().fastify.server)
-      .post('/users')
-      .send({ name: 'Alice', age: 30 });
+    const res = await request(app.httpKernel().fastify.server).post('/users').send({ name: 'Alice', age: 30 });
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ name: 'Alice', age: 30 });
   });
@@ -38,9 +26,7 @@ describe('validate() middleware', () => {
     const app = await bootApp(() => {
       Route.post('/users', () => ({ ok: true })).middleware(validate(schema));
     });
-    const res = await request(app.httpKernel().fastify.server)
-      .post('/users')
-      .send({ email: 'not-an-email', age: 12 });
+    const res = await request(app.httpKernel().fastify.server).post('/users').send({ email: 'not-an-email', age: 12 });
     expect(res.status).toBe(422);
     expect(res.body.errors).toMatchObject({
       email: expect.any(Array),
@@ -61,18 +47,19 @@ describe('FormRequest class', () => {
   }
 
   class GuardedRequest extends FormRequest {
-    rules() { return z.object({}); }
-    override authorize(req: Request) { return req.header('x-token') === 'ok'; }
+    rules() {
+      return z.object({});
+    }
+    override authorize(req: Request) {
+      return req.header('x-token') === 'ok';
+    }
   }
 
   it('validates and exposes data via req.validated()', async () => {
     const app = await bootApp(() => {
-      Route.post('/users', (req: Request) => req.validated())
-        .middleware(CreateUserRequest);
+      Route.post('/users', (req: Request) => req.validated()).middleware(CreateUserRequest);
     });
-    const res = await request(app.httpKernel().fastify.server)
-      .post('/users')
-      .send({ name: 'A', email: 'a@b.com' });
+    const res = await request(app.httpKernel().fastify.server).post('/users').send({ name: 'A', email: 'a@b.com' });
     expect(res.status).toBe(200);
     expect(res.body).toEqual({ name: 'A', email: 'a@b.com' });
   });
@@ -94,10 +81,7 @@ describe('FormRequest class', () => {
     const denied = await request(app.httpKernel().fastify.server).post('/secret').send({});
     expect(denied.status).toBe(403);
 
-    const allowed = await request(app.httpKernel().fastify.server)
-      .post('/secret')
-      .set('x-token', 'ok')
-      .send({});
+    const allowed = await request(app.httpKernel().fastify.server).post('/secret').set('x-token', 'ok').send({});
     expect(allowed.status).toBe(200);
   });
 });

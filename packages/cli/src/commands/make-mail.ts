@@ -40,9 +40,12 @@ function render(tpl: string, vars: { className: string; templateName: string }):
   return tpl.replace(/__CLASS__/g, vars.className).replace(/__TEMPLATE__/g, vars.templateName);
 }
 
-export async function makeMail(name: string, opts: MakeOpts = {}): Promise<{ classPath: string; templatePath: string }> {
+export async function makeMail(
+  name: string,
+  opts: MakeOpts = {},
+): Promise<{ classPath: string; templatePath: string }> {
   const cwd = opts.cwd ?? process.cwd();
-  const className = pascalCase(name).replace(/Mail$/, '') + 'Mail';
+  const className = `${pascalCase(name).replace(/Mail$/, '')}Mail`;
   const templateName = kebabCase(className).replace(/-mail$/, '');
 
   const classPath = resolve(cwd, 'app/Mail', `${className}.ts`);

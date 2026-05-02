@@ -10,7 +10,7 @@ const fixtureDir = (name: string) => resolve(here, '..', '..', 'tests', 'fixture
 
 describe('dbSeed', () => {
   beforeEach(() => {
-    delete (globalThis as Record<string, unknown>).__fyron_test_pglite;
+    (globalThis as Record<string, unknown>).__fyron_test_pglite = undefined;
   });
 
   it('runs seeders alphabetically and inserts data', async () => {

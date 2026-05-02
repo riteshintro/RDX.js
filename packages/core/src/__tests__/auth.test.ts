@@ -2,14 +2,7 @@ import { describe, it, expect, beforeEach } from 'vitest';
 import { PGlite } from '@electric-sql/pglite';
 import { drizzle } from 'drizzle-orm/pglite';
 import request from 'supertest';
-import {
-  Application,
-  AUTH_SCHEMA_SQL,
-  Auth,
-  RequireAuth,
-  Route,
-  type Request as RdxRequest,
-} from '../index.js';
+import { Application, AUTH_SCHEMA_SQL, Auth, RequireAuth, Route, type Request as RdxRequest } from '../index.js';
 
 async function bootApp(): Promise<Application> {
   const client = new PGlite();
@@ -58,9 +51,7 @@ const SIGNUP = {
 
 describe('better-auth integration — signup + signin', () => {
   it('creates a user via /api/auth/sign-up/email', async () => {
-    const res = await request(app.httpKernel().fastify.server)
-      .post('/api/auth/sign-up/email')
-      .send(SIGNUP);
+    const res = await request(app.httpKernel().fastify.server).post('/api/auth/sign-up/email').send(SIGNUP);
     expect(res.status).toBe(200);
     expect(res.body.user).toBeDefined();
     expect(res.body.user.email).toBe(SIGNUP.email);

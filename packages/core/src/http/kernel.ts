@@ -1,6 +1,6 @@
 import { createRequire } from 'node:module';
 import Fastify, { type FastifyInstance } from 'fastify';
-import { type Server } from 'node:http';
+import type { Server } from 'node:http';
 import type { Logger } from '../logging/logger.js';
 import type { Container } from '../container/container.js';
 import { createExceptionHandler, type ExceptionRenderer } from './exception-handler.js';

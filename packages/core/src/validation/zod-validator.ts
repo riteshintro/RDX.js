@@ -8,7 +8,8 @@ export function zodErrorsToMap(issues: ZodIssue[]): Record<string, string[]> {
   const errors: Record<string, string[]> = {};
   for (const i of issues) {
     const key = i.path.length ? i.path.join('.') : '_';
-    (errors[key] ??= []).push(i.message);
+    if (!errors[key]) errors[key] = [];
+    errors[key].push(i.message);
   }
   return errors;
 }

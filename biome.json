@@ -11,12 +11,17 @@
         "noUnusedVariables": "error",
         "noUnusedImports": "error"
       },
+      "complexity": {
+        "noThisInStatic": "off"
+      },
       "style": {
         "useImportType": "error",
-        "noVar": "error"
+        "noVar": "error",
+        "noNonNullAssertion": "warn"
       },
       "suspicious": {
-        "noExplicitAny": "warn"
+        "noExplicitAny": "warn",
+        "noAssignInExpressions": "warn"
       }
     }
   },
@@ -33,6 +38,9 @@
       "trailingCommas": "all",
       "semicolons": "always",
       "arrowParentheses": "always"
+    },
+    "parser": {
+      "unsafeParameterDecoratorsEnabled": true
     }
   },
   "json": {

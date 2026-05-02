@@ -49,10 +49,7 @@ function deepMerge(a: ConfigData, b: ConfigData): ConfigData {
   for (const k of Object.keys(b)) {
     const av = a[k];
     const bv = b[k];
-    if (
-      bv && typeof bv === 'object' && !Array.isArray(bv) &&
-      av && typeof av === 'object' && !Array.isArray(av)
-    ) {
+    if (bv && typeof bv === 'object' && !Array.isArray(bv) && av && typeof av === 'object' && !Array.isArray(av)) {
       out[k] = deepMerge(av as ConfigData, bv as ConfigData);
     } else {
       out[k] = bv;
