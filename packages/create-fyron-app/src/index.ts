@@ -25,9 +25,9 @@ cli
     console.log(pc.green('✓ Project created.'));
     console.log(pc.bold('\nNext steps:\n'));
     console.log(`  cd ${projectName}`);
-    console.log('  pnpm install');
+    console.log('  bun install');
     console.log('  cp .env.example .env  # set DATABASE_URL');
-    console.log('  pnpm fyron serve');
+    console.log('  bun run dev');
     console.log('');
   });
 
