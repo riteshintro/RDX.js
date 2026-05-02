@@ -28,7 +28,7 @@ export class Mailer {
 
   constructor(
     private readonly cfg: MailConfig,
-    private readonly basePath: string,
+    basePath: string,
     private readonly logger?: Logger,
   ) {
     this.transporter = this.buildTransporter();
