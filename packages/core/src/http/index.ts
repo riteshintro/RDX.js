@@ -1,3 +1,4 @@
+export type { FastifyInstance, FastifyRequest, FastifyReply } from 'fastify';
 export { Request, type RdxUploadedFile } from './request.js';
 export { Response, type CookieOptions } from './response.js';
 export { HttpKernel, type HttpKernelOptions } from './kernel.js';

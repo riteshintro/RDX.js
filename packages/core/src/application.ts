@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import type { Server } from 'node:http';
+import type { FastifyInstance } from 'fastify';
 import { Container } from './container/container.js';
 import { ConfigRepository, type ConfigData } from './config/repository.js';
 import { createLogger, type Logger } from './logging/logger.js';
@@ -42,6 +43,7 @@ export class Application {
   private scheduleLoader: (() => unknown | Promise<unknown>) | null = null;
   private shutdownHooks: Array<() => unknown | Promise<unknown>> = [];
   private earlyMiddleware: MiddlewareLike[] = [];
+  private fastifyCallbacks: Array<(fastify: FastifyInstance) => void | Promise<void>> = [];
 
   constructor(basePath: string = process.cwd()) {
     this.basePath = basePath;
@@ -110,6 +112,12 @@ export class Application {
     return this;
   }
 
+  /** Register Fastify plugins or hooks before routes are compiled. */
+  withFastify(fn: (fastify: FastifyInstance) => void | Promise<void>): this {
+    this.fastifyCallbacks.push(fn);
+    return this;
+  }
+
   async boot(): Promise<void> {
     if (this.booted) return;
 
@@ -150,6 +158,13 @@ export class Application {
     if (this.earlyMiddleware.length && this.container.has('httpKernel')) {
       const kernel = this.httpKernel();
       for (const mw of this.earlyMiddleware) kernel.use(mw);
+    }
+
+    if (this.fastifyCallbacks.length && this.container.has('httpKernel')) {
+      const { fastify } = this.httpKernel();
+      for (const fn of this.fastifyCallbacks) {
+        await fn(fastify);
+      }
     }
 
     if (this.routesLoader) {
