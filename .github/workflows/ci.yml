@@ -32,7 +32,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Approve build scripts
-        run: pnpm rebuild esbuild @swc/core
+        run: pnpm rebuild esbuild @swc/core @biomejs/biome
 
       - name: Build, typecheck, lint, test
         run: turbo build typecheck lint test --filter='!@fyron/docs' --filter='!blog-api'

@@ -30,6 +30,6 @@
     "vitest": "^2.1.5"
   },
   "pnpm": {
-    "onlyBuiltDependencies": ["esbuild", "@swc/core"]
+    "onlyBuiltDependencies": ["esbuild", "@swc/core", "@biomejs/biome"]
   }
 }
