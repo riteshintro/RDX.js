@@ -7,5 +7,5 @@
   "access": "public",
   "baseBranch": "main",
   "updateInternalDependencies": "patch",
-  "ignore": ["@fyron/docs", "fyron-monorepo"]
+  "ignore": ["@fyron/docs", "blog-api"]
 }
