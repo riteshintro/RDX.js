@@ -43,7 +43,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Approve build scripts
-        run: pnpm rebuild esbuild @swc/core
+        run: pnpm rebuild esbuild @swc/core @biomejs/biome
 
       - name: Create Release PR or Publish (dry run)
         if: ${{ inputs.dry_run }}
