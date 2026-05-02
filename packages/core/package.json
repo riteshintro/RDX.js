@@ -1,6 +1,6 @@
 {
   "name": "@fyron/core",
-  "version": "0.1.2",
+  "version": "0.2.0",
   "description": "Laravel-like framework for Node.js on Fastify + Drizzle",
   "license": "MIT",
   "author": "riteshintro",
