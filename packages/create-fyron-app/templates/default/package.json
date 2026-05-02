@@ -4,18 +4,20 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "fyron": "tsx node_modules/@fyron/cli/dist/bin.js",
-    "dev": "tsx node_modules/@fyron/cli/dist/bin.js serve",
+    "fyron": "fyron",
+    "dev": "fyron serve",
     "build": "tsc -p tsconfig.build.json",
     "start": "node dist/server.js",
-    "migrate": "tsx node_modules/@fyron/cli/dist/bin.js migrate",
-    "db:seed": "tsx node_modules/@fyron/cli/dist/bin.js db:seed"
+    "migrate": "fyron migrate",
+    "db:seed": "fyron db:seed",
+    "routes": "fyron route:list"
   },
   "dependencies": {
+    "@fyron/core": "__RDX_VERSION__",
     "@fyron/cli": "__CLI_VERSION__",
     "drizzle-orm": "^0.45.2",
+    "handlebars": "^4.7.8",
     "pg": "^8.13.1",
-    "@fyron/core": "__RDX_VERSION__",
     "reflect-metadata": "^0.2.2",
     "tsyringe": "^4.8.0",
     "zod": "^4.0.0"
@@ -23,7 +25,7 @@
   "devDependencies": {
     "@types/node": "^22.9.0",
     "@types/pg": "^8.11.10",
-    "drizzle-kit": "^0.28.0",
+    "drizzle-kit": "^0.45.0",
     "tsx": "^4.19.2",
     "typescript": "^5.6.3"
   }

@@ -1,15 +1,10 @@
-import { readFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
-import { dirname, resolve } from 'node:path';
+import { resolve } from 'node:path';
 import { cac } from 'cac';
 import pc from 'picocolors';
 import { scaffold } from './scaffold.js';
 
-const pkgDir = dirname(fileURLToPath(import.meta.url));
-const { version } = JSON.parse(
-  readFileSync(resolve(pkgDir, '..', 'package.json'), 'utf8'),
-) as { version: string };
-const defaultVersion = `^${version}`;
+declare const __PACKAGE_VERSION__: string;
+const defaultVersion = `^${__PACKAGE_VERSION__}`;
 
 const cli = cac('create-fyron-app');
 
@@ -37,5 +32,5 @@ cli
   });
 
 cli.help();
-cli.version(version);
+cli.version(__PACKAGE_VERSION__);
 cli.parse();
