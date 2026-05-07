@@ -1,0 +1,51 @@
+{
+  "pages": {
+    "/_not-found/page": [
+      "static/chunks/webpack-bd8de92ccec69f75.js",
+      "static/chunks/504aa207-32a4b269c05199f8.js",
+      "static/chunks/566-e464546da14a2650.js",
+      "static/chunks/main-app-843abdcb28c11c82.js",
+      "static/chunks/app/_not-found/page-ee1663c26c512585.js"
+    ],
+    "/layout": [
+      "static/chunks/webpack-bd8de92ccec69f75.js",
+      "static/chunks/504aa207-32a4b269c05199f8.js",
+      "static/chunks/566-e464546da14a2650.js",
+      "static/chunks/main-app-843abdcb28c11c82.js",
+      "static/css/8d4c53403122aadc.css",
+      "static/chunks/348-b9d0518158f58bab.js",
+      "static/chunks/app/layout-fd0024a2287b2de2.js"
+    ],
+    "/page": [
+      "static/chunks/webpack-bd8de92ccec69f75.js",
+      "static/chunks/504aa207-32a4b269c05199f8.js",
+      "static/chunks/566-e464546da14a2650.js",
+      "static/chunks/main-app-843abdcb28c11c82.js",
+      "static/chunks/268-9d345e8d5f47aab7.js",
+      "static/chunks/app/page-18337017b7b0a2f6.js"
+    ],
+    "/docs/layout": [
+      "static/chunks/webpack-bd8de92ccec69f75.js",
+      "static/chunks/504aa207-32a4b269c05199f8.js",
+      "static/chunks/566-e464546da14a2650.js",
+      "static/chunks/main-app-843abdcb28c11c82.js",
+      "static/chunks/760-92ad46e0e8b73783.js",
+      "static/chunks/348-b9d0518158f58bab.js",
+      "static/chunks/268-9d345e8d5f47aab7.js",
+      "static/chunks/113-605a7718fa0bca8e.js",
+      "static/chunks/app/docs/layout-48059721ac7c5816.js"
+    ],
+    "/docs/[[...slug]]/page": [
+      "static/chunks/webpack-bd8de92ccec69f75.js",
+      "static/chunks/504aa207-32a4b269c05199f8.js",
+      "static/chunks/566-e464546da14a2650.js",
+      "static/chunks/main-app-843abdcb28c11c82.js",
+      "static/chunks/760-92ad46e0e8b73783.js",
+      "static/chunks/348-b9d0518158f58bab.js",
+      "static/chunks/268-9d345e8d5f47aab7.js",
+      "static/chunks/113-605a7718fa0bca8e.js",
+      "static/chunks/609-1d11e29b3cc9bd57.js",
+      "static/chunks/app/docs/[[...slug]]/page-67bda1d310eea9d6.js"
+    ]
+  }
+}
